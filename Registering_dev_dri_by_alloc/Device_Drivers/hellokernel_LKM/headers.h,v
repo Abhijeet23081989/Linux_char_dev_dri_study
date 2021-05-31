@@ -1,0 +1,71 @@
+head	1.3;
+access;
+symbols;
+locks
+	asrivastava:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	2018.08.17.10.34.28;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.17.09.56.24;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.17.07.39.49;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First Iteration of LKM "Hello kernel"
+Driver_test script running log entry->1
+Linux-kernel 4.13.12
+GPL not included
+Author not included
+LKM not registered in device table yet
+@
+
+
+1.3
+log
+@RCS unable to execute make
+Trying a third time
+@
+text
+@#include<linux/init.h>
+#include<linux/module.h>
+@
+
+
+1.2
+log
+@Second iteration
+removed MODULE_*() macros from headers
+It was giving warnings
+@
+text
+@a2 3
+/*MODULE_AUTHOR("Abhijeet Srivastava\n")
+MODULE_DESCRIPTION("Abhijeet 1st LKM\n")
+MODULE_LICENSE("GPL")*/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
+MODULE_AUTHOR("Abhijeet Srivastava\n")
+d5 1
+a5 1
+MODULE_LICENSE("GPL")
+@

@@ -1,0 +1,386 @@
+head	1.15;
+access;
+symbols;
+locks
+	asrivastava:1.15; strict;
+comment	@ * @;
+
+
+1.15
+date	2018.09.24.05.21.13;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.23.10.02.12;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.09.20.09.36.20;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.20.08.16.15;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.18.06.28.53;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.18.05.07.44;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.18.05.04.45;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.09.17.12.36.32;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.09.17.12.11.56;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.09.15.07.18.47;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.09.15.07.15.38;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.15.07.08.58;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.14.12.21.11;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.14.10.33.04;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.10.15.46.01;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First iteration
+@
+
+
+1.15
+log
+@added spin_unlock
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+loff_t llseekdev(struct file *myfile, loff_t ofst, int origin)
+{
+	//____________________________Declaration_______________________
+	DEV *ldev;
+	Qset* lqset;
+	ldev=NULL;
+	lqset=NULL;
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+	//______________Extracting DEV variable from private_data________
+	ldev=(DEV*)myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"no address to seek\n");
+#endif
+	}
+	//_____________________SpinLock__________________________________
+	spin_lock(&ldev->sl);
+	//______________Checking if OFFSET is greater than datasize_______
+	if(ofst>ldev->datasize)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Offset to big!!\n");
+#endif
+	} 
+	//_____________Making a local local copy of head node_____________
+	lqset=ldev->first;
+	//_________Semaphore down before llseek______________________
+	//if(down_interruptible(&ldev->s1))
+          //    return -ERESTARTSYS;
+	//______Choosing origin point from SEEK_SET,SEEK_CUR or SEEK_END__
+	switch(origin)
+	{
+
+		case SEEK_SET:
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Inside SEEK_SET\n");
+#endif
+				myfile->f_pos=0;
+				if(ofst<ldev->datasize && ofst>0)
+				myfile->f_pos=myfile->f_pos+ofst;
+			}
+			break;
+		case SEEK_CUR:
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Inside SEEK_CUR\n");
+#endif
+				if(ofst>=0)
+				{
+					if((myfile->f_pos+ofst) <= ldev->datasize)
+						myfile->f_pos=myfile->f_pos+ofst;
+				}
+				else
+				{
+					if((myfile->f_pos+ofst)<0)
+					{
+						printk(KERN_ERR"offset not possible\n");
+						return (loff_t)-1;
+					}
+					else
+						myfile->f_pos=myfile->f_pos+ofst;
+				}
+			}
+			break;
+		case SEEK_END:
+			{
+				myfile->f_pos=ldev->datasize;//Assiging datasize to f_pos to signiify SEEK_END
+			printk(KERN_INFO"Inside SEEK_END\n");
+			if(ofst<0 && (-1)*ofst<=ldev->datasize)
+			myfile->f_pos=myfile->f_pos+ofst;
+			else if(ofst>0)
+			{
+				if((myfile->f_pos+ofst)>ldev->datasize)
+				{
+#ifdef DEBUG
+					printk(KERN_ERR"offset to big\n");
+#endif
+				goto OUT;
+				}
+			}
+			}
+			break;
+	}
+	//up(&ldev->s1);
+	//_____________________________Spin_Unlock_________________________________
+	spin_unlock(&ldev->sl);
+	printk(KERN_INFO"END=>%s\n",__func__);
+	return myfile->f_pos;
+OUT: return -1;
+}
+@
+
+
+1.14
+log
+@added spin_lock()
+@
+text
+@d89 2
+@
+
+
+1.13
+log
+@typo
+@
+text
+@d19 2
+d31 2
+a32 2
+	if(down_interruptible(&ldev->s1))
+              return -ERESTARTSYS;
+d88 1
+a88 1
+	up(&ldev->s1);
+@
+
+
+1.12
+log
+@added semaphore down & up
+@
+text
+@d28 3
+a33 3
+		//_________Semaphore down before llseek______________________
+		 if(down_interruptable(&ldev->s1))
+                   return -ERESTARTSYS;
+@
+
+
+1.11
+log
+@ugraded SEEK_END algo
+@
+text
+@d31 4
+d86 1
+@
+
+
+1.10
+log
+@typo
+@
+text
+@d65 1
+a65 1
+				myfile->f_pos=ldev->datasize-1;
+d69 10
+d84 1
+@
+
+
+1.9
+log
+@made Changes to SEEK_END, SEEK_CUR & SEEK_END
+@
+text
+@d38 1
+a38 1
+				myfile->f_pos=myfile_f_pos+ofst;
+@
+
+
+1.8
+log
+@upgraded SEEK_END algo
+@
+text
+@d5 1
+d11 1
+d19 2
+a20 1
+	if(ofst>ldev->devsize)
+d26 1
+d28 1
+d36 1
+d38 1
+a38 1
+				myfile->f_pos=ofst;
+d65 1
+@
+
+
+1.7
+log
+@added SEEK_CUR algo
+@
+text
+@d61 1
+a61 1
+			myfile->f_pos=ofst;
+@
+
+
+1.6
+log
+@declared lqset
+@
+text
+@d28 1
+d30 2
+a31 1
+				if(ofst<ldev->devsize && ofst>0)
+d37 1
+d39 16
+a54 1
+				//if((-1)*ofst<)
+d60 1
+a60 1
+			if(ofst<0 && (-1)*ofst>ldev->devsize)
+@
+
+
+1.5
+log
+@commented SEEK_CUR incomplete logic to check
+@
+text
+@d6 3
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d32 2
+a33 2
+			printk(KERN_INFO"Inside SEEK_CUR\n");
+			if((-1)*ofst<)
+@
+
+
+1.3
+log
+@return myfile->f_pos
+@
+text
+@d19 2
+a20 3
+	}
+	else 
+		myfile->f_pos=ofst;
+d24 5
+a28 1
+			printk(KERN_INFO"Inside SEEK_SET\n");
+d31 1
+d33 2
+d37 1
+d39 3
+@
+
+
+1.2
+log
+@First Iteration
+@
+text
+@d14 8
+d25 1
+a25 1
+			printk(KERN_INFO"Inside SEEK_SET");
+d28 1
+a28 1
+			printk(KERN_INFO"Inside SEEK_CUR");
+d31 1
+a31 1
+			printk(KERN_INFO"Inside SEEK_END");
+d35 1
+a35 1
+	return 0;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
+loff_t llseekdev(struct file *myfile, loff_t ofst, int skpr)
+d5 1
+d7 19
+@

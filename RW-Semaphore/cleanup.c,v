@@ -1,0 +1,156 @@
+head	1.8;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.8
+date	2018.09.06.04.09.05;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.21.11.28.14;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.20.12.52.33;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.20.12.49.03;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.10.30.48;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.10.19.07;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.10.09.04;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.18.09.50.34;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@used unregister_chrdev_region
+@
+
+
+1.8
+log
+@changed l to lc
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+int lc;
+void __exit cleanupFunc(void)
+{
+#ifdef DEBUG
+	printk(KERN_INFO"Abhijeet_mod driver is removed now.Have a nice day!!:)\n");
+#endif
+	///////////////////////////////Unregister device driver///////////////////////////////////
+	for(lc=0;lc<nod;lc++)//1
+		cdev_del(&dev[lc].mycdev);
+	kfree(dev);//2
+	unregister_chrdev_region(devno,nod);//3
+}
+module_exit(cleanupFunc);
+@
+
+
+1.7
+log
+@added ifdef DEBUG
+@
+text
+@d3 1
+a3 1
+int l;
+d10 2
+a11 2
+	for(l=0;l<nod;l++)//1
+		cdev_del(&dev[l].mycdev);
+@
+
+
+1.6
+log
+@added int l
+@
+text
+@d6 1
+d8 1
+@
+
+
+1.5
+log
+@add cdev_del and done in reverse order to that of init
+@
+text
+@d3 1
+@
+
+
+1.4
+log
+@added \n at the end
+@
+text
+@d7 4
+a10 2
+	kfree(dev);
+	unregister_chrdev_region(devno,nod);
+@
+
+
+1.3
+log
+@removed \n from printk in cleanup
+the one used in the middle
+@
+text
+@d5 1
+a5 1
+	printk(KERN_INFO"Abhijeet_mod driver is removed now.Have a nice day!!:)");
+@
+
+
+1.2
+log
+@moved kfree before unregister
+@
+text
+@d5 1
+a5 1
+	printk(KERN_INFO"Abhijeet_mod driver is removed now\nHave a nice day!!:)");
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 2
+a7 1
+	////////////////////////////////Unregister device driver/////////////////////////////////
+a8 1
+	kfree(dev);
+@

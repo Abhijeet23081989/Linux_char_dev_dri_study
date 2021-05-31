@@ -1,0 +1,87 @@
+#include"headers.h"
+#include"declarations.h"
+ssize_t readdev(struct file *myfile, char __user *ubuff, size_t size, loff_t *offset)
+{
+	//_______________Declaration______________________________________________
+	DEV* ldev;
+	Qset* lqsetr;
+	int noctr,nocsr,lsize,i,j,ret,qui,remq,wert;
+#ifdef DEBUG
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+#endif
+	//_____________Saving device name saved in myfile's private_data__________
+	ldev=(DEV*)myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: unable to return address\n");
+#endif
+		goto OUT;
+	}
+	//______________Checking user buffer size_________________________________
+	if(size > ldev->datasize)	
+		noctr=lsize=ldev->datasize;
+	else
+		noctr=lsize=size;
+/*	//_______________Semaphore Down Operation_________________________________
+        if(down_interruptible(&ldev->s1))
+                return -ERESTARTSYS;
+	printk(KERN_INFO"ldev->datasize=%d\n",ldev->datasize);*/
+
+	//_____________________Adding processes to wait queue_____________________
+	wert=wait_event_interruptible(ldev->wqu,ldev->datasize>0);
+	printk(KERN_INFO"wert=%d\n",wert);
+	if(wert)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: wait_event_interruptible has released all processes from its queue\n");
+#endif
+		return -ERESTARTSYS;
+	}
+	//___________Copying head node of SCULL to local Qset ptr_________________
+	lqsetr=ldev->first;
+	if(!ldev->first)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: return address\n");
+#endif
+		goto OUT;
+	}
+	j=i=nocsr=0;
+	qui=(*offset)/regsize;
+	remq=(*offset)%regsize;
+	lsize=noctr=noctr-(qui*regsize+remq);
+	//________________Reading from kernel space SCULL to user buffer___________
+	while(noctr)
+	{
+		if(noctr>regsize)
+			noctr=regsize;
+		printk(KERN_INFO"i=%d\n",i);
+		ret=copy_to_user(ubuff+nocsr,(lqsetr->data[i+qui]+remq),regsize-remq);
+			if(ret)
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Partial write\n");
+#endif
+			}
+		nocsr=nocsr+(noctr-(ret+remq));
+		noctr=lsize-nocsr;
+		if((i+qui)==noofreg-1)
+		{
+			lqsetr=lqsetr->next;
+			i=0;
+			qui=0;
+		}
+		else
+		{
+			remq=0;
+			i++;
+		}
+	}
+	//up(&ldev->s1);
+#ifdef DEBUG
+	printk(KERN_INFO"END=>%s\n",__func__);
+#endif	
+return nocsr;
+OUT: return -1;
+}

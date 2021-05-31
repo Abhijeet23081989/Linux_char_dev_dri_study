@@ -1,0 +1,161 @@
+head	1.5;
+access;
+symbols;
+locks
+	asrivastava:1.5; strict;
+comment	@ * @;
+
+
+1.5
+date	2018.09.10.15.33.57;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.10.15.33.27;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.10.15.32.50;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.10.15.27.04;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.10.15.24.44;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@first iteration
+@
+
+
+1.5
+log
+@missed ;
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+ssize_t writedev(struct file *myfile, const char __user *ubuff, size_t size, loff_t *offset)
+{
+	//_______________Declaration______________________________________________
+	DEV* ldev;
+	Qset* lqsetw;
+	int noctw,nocsw,lsize,i,ret;
+#ifdef DEBUG
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+#endif
+	//_____________Saving device name saved in myfile's private_data__________
+	ldev=(DEV*)myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: unable to return address\n");
+#endif
+		goto OUT;
+	}
+	//______________Checking user buffer size_________________________________
+	if(size < ldev->devsize)	
+	noctw=lsize=size;
+	else
+	noctw=lsize=ldev->devsize;
+	//_________________Calling createSCULL____________________________________
+	lqsetw=ldev->first=createscull(noctw);
+	if(!ldev->first)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: return address\n");
+#endif
+		goto OUT;
+	}
+	i=nocsw=0;
+	//________________Writing from user buffer to kernel space SCULL___________
+	while(noctw)
+	{
+		if(noctw>ldev->regsize)
+			noctw=ldev->regsize;
+		ret=copy_from_user(lqsetw->data[i],ubuff+nocsw,regsize);
+			if(ret)
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Partial write\n");
+#endif
+			}
+		nocsw=nocsw+(nocsw-ret);
+		noctw=lsize-nocsw;
+		if(i<ldev->regsize)
+			i++;
+		else
+		{
+			lqsetw=lqsetw->next;
+			i=0;
+		}
+	}
+	ldev->datasize=nocsw;
+#ifdef DEBUG
+	printk(KERN_INFO"END=>%s\n",__func__);
+#endif
+	return nocsw;
+OUT: return -1;
+}
+@
+
+
+1.4
+log
+@typo
+@
+text
+@d63 1
+a63 1
+OUT: return -1
+@
+
+
+1.3
+log
+@added comments
+@
+text
+@d41 1
+a41 1
+		ret=copy_from_user(lqsetw->data[i],ubuff+nocsw,regsize)
+@
+
+
+1.2
+log
+@typo
+@
+text
+@d9 1
+d11 1
+d16 1
+d18 1
+d30 1
+d32 1
+d44 1
+a44 1
+#ifdef
+d59 1
+d61 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a8 1
+	int notcw,nocsw,lsize,i,ret;
+@

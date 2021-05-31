@@ -1,0 +1,117 @@
+head	1.5;
+access;
+symbols;
+locks
+	asrivastava:1.5; strict;
+comment	@ * @;
+
+
+1.5
+date	2018.08.18.07.00.06;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.05.39.15;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.03.28.25;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.03.16.32;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.17.18.25.16;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First iteration of Registering LKM 
+added linux/slab.h for kmalloc anf kfree
+added linux/fs.h for register_chrdev
+@
+
+
+1.5
+log
+@changed extern int majorno to extern int new_majorno
+@
+text
+@#ifndef MAJR
+#define MAJR 0
+#endif
+
+#ifndef MINR
+#define MINR 0
+#endif
+
+#ifndef DEVNAME
+#define DEVNAME "Abhijeet_dev_driver"
+#endif
+typedef struct
+{
+	struct Qset *next;
+	void **data;
+}Qset;
+typedef struct
+{
+	struct Qset *first;
+}DEV;
+extern DEV *dev;
+extern int new_majorno;
+@
+
+
+1.4
+log
+@used extern int majorno
+@
+text
+@d22 1
+a22 1
+extern int majorno;
+@
+
+
+1.3
+log
+@changed MAJOR to MAJR
+kernel may be facing ambiguity for MAJOR.
+@
+text
+@d22 1
+@
+
+
+1.2
+log
+@Typo ";" missing in declarations
+@
+text
+@d1 2
+a2 2
+#ifndef MAJOR
+#define MAJOR 0
+d5 2
+a6 2
+#ifndef MINOR
+#define MINOR 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 1
+a15 1
+	void **data
+@

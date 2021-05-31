@@ -1,0 +1,464 @@
+head	1.21;
+access;
+symbols;
+locks
+	asrivastava:1.21; strict;
+comment	@ * @;
+
+
+1.21
+date	2018.09.06.06.03.11;	author asrivastava;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2018.09.06.04.05.33;	author asrivastava;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2018.09.03.06.11.08;	author asrivastava;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2018.09.02.07.20.52;	author asrivastava;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2018.09.02.07.10.23;	author asrivastava;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2018.08.21.11.37.24;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.08.21.11.30.08;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.08.20.12.53.44;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.08.20.12.50.55;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.08.20.12.49.34;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.08.18.11.55.33;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.08.18.11.38.27;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.08.18.11.33.57;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.08.18.11.27.50;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.18.11.25.31;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.18.11.21.39;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.18.10.56.16;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.10.46.06;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.10.03.07;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.10.00.35;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.18.09.51.26;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.21
+log
+@dev->next=NULL
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+#include"file_opr.h"
+DEV *dev;
+dev_t devno,devid;
+int minorno;
+int majorno;
+int retin,ret1;
+int nod,noofreg,regsize,devsize,datasize;
+/////////////////////////////For initiating module parameter/////////////////////////////////
+module_param(nod,int,S_IRUGO);
+module_param(noofreg,int,S_IRUGO);
+module_param(regsize,int,S_IRUGO);
+module_param(devsize,int,S_IRUGO);
+module_param(datasize,int,S_IRUGO);
+static int __init initializationFunc(void)
+{
+	int l;
+#ifdef DEBUG
+	printk(KERN_INFO"Abhijeet_mod driver is inserted\n");
+///////////////////////////Register Device Driver with Kernel device/////////////////////////
+	printk(KERN_INFO"nod1=%d\n",nod);
+#endif
+	minorno=MINR;
+	retin=alloc_chrdev_region(&devno,minorno,nod,DEVNAME);
+	if(retin==-1)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"alloc_chrdev_region failure\n");
+#endif
+		goto OUT;
+	}
+	majorno=MAJOR(devno);
+	minorno=MINOR(devno);
+#ifdef DEBUG
+	printk(KERN_INFO"Major Number=%d\n",majorno);
+	printk(KERN_INFO"Minor Number=%d\n",minorno);
+	printk(KERN_INFO"nod2=%d\n",nod);
+#endif
+/////////////////////////////Allocate space for device///////////////////////////////////////
+	dev=kmalloc(sizeof(DEV)*nod,GFP_KERNEL);/*GFP_KERNEL-->Get From Page of Kernel*/
+	if(!dev)
+	{
+		printk(KERN_ERR"kmalloc failure\n");
+		goto OUT;
+	}
+	memset(dev,'\0',sizeof(DEV));
+	dev->first=(void*)0;
+////////////////////////Initialize device for device//////////////////////////////////////////
+for(l=0;l<nod;l++)
+{
+	cdev_init(&dev[l].mycdev,&fops);
+	/*For Initialising struct file_operations fops*/
+	dev[l].noofreg=noofreg;//no of devices
+	dev[l].regsize=regsize;//register size
+	dev[l].devsize=devsize;//device size
+	dev[l].datasize=datasize;//data size
+	devid=MKDEV(majorno,l);//for joining major and minor number
+////////////////////////Add device to device table////////////////////////////////////////////
+	ret1=cdev_add(&dev[l].mycdev,devid,1);
+	if(ret1==-1)
+	{
+#ifdef DEBUG
+		printk(KERN_INFO"cdev_add()fail\n");
+#endif
+		goto OUT;
+	}
+}
+	return 0;
+OUT:return -1;
+}module_init(initializationFunc);
+@
+
+
+1.20
+log
+@changed ret to retin
+@
+text
+@d48 1
+@
+
+
+1.19
+log
+@nochange
+@
+text
+@d8 1
+a8 1
+int ret,ret1;
+d25 2
+a26 2
+	ret=alloc_chrdev_region(&devno,minorno,nod,DEVNAME);
+	if(ret==-1)
+@
+
+
+1.18
+log
+@removed unecessar comments
+@
+text
+@d41 1
+a41 1
+	dev=kmalloc(sizeof(DEV)*nod,GFP_KERNEL);/*GFP-->Get Page From*/
+@
+
+
+1.17
+log
+@No change.
+@
+text
+@a66 1
+	//dev[l]=createscull(dev[l]);
+@
+
+
+1.16
+log
+@typo
+@
+text
+@d67 1
+@
+
+
+1.15
+log
+@used ifdef DEBUG
+@
+text
+@d28 1
+a28 1
+#ifdef
+d62 1
+a62 1
+#ifdef
+@
+
+
+1.14
+log
+@added inside init
+@
+text
+@d9 1
+a9 1
+int nod;
+d12 4
+d19 1
+d22 2
+a24 1
+	printk(KERN_INFO"nod1=%d\n",nod);
+d28 1
+d30 1
+d35 1
+d39 1
+d52 6
+a57 1
+	devid=MKDEV(majorno,l);
+d62 1
+d64 1
+d69 1
+a69 2
+OUT:printk(KERN_INFO"Error message\n");
+    return 0;
+@
+
+
+1.13
+log
+@added int l
+@
+text
+@d9 1
+a9 1
+int nod,l;
+d14 1
+@
+
+
+1.12
+log
+@added cdev_init,cdev_add & MKDEV
+@
+text
+@d9 1
+a9 1
+int nod;
+@
+
+
+1.11
+log
+@commented int loc_nod
+@
+text
+@d5 1
+a5 1
+dev_t devno;
+d8 1
+a8 1
+int ret;
+a13 1
+	//int loc_nod;
+a15 3
+
+	//nod=5;
+//	loc_nod=nod;
+d30 1
+a30 1
+	dev=kmalloc(sizeof(DEV),GFP_KERNEL);/*GFP-->Get Page From*/
+d37 13
+a49 2
+	//Initialize device for device
+	//Add device entry into device table
+@
+
+
+1.10
+log
+@removed unsigned
+@
+text
+@d14 1
+a14 1
+	int loc_nod;
+d19 1
+a19 1
+	loc_nod=nod;
+d22 1
+a22 1
+	ret=alloc_chrdev_region(&devno,minorno,loc_nod,DEVNAME);
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+unsigned int nod;
+d11 1
+a11 1
+module_param(nod,unsigned,S_IRUGO);
+@
+
+
+1.8
+log
+@display nod from cmd arg
+@
+text
+@d11 1
+a11 1
+module_param(nod,unsigned int,S_IRUGO);
+@
+
+
+1.7
+log
+@int loc_nod
+loc_nod=nod
+@
+text
+@d21 1
+d32 1
+a32 1
+	printk(KERN_INFO"nod=%d\n",nod);
+@
+
+
+1.6
+log
+@nod=5
+@
+text
+@d14 1
+d18 2
+a19 1
+	nod=5;
+d21 1
+a21 1
+	ret=alloc_chrdev_region(&devno,minorno,nod,DEVNAME);
+@
+
+
+1.5
+log
+@display nod
+@
+text
+@d17 1
+a17 1
+	//nod=NOD;
+@
+
+
+1.4
+log
+@used module_param
+@
+text
+@d17 1
+a17 1
+	nod=NOD;
+d29 1
+@
+
+
+1.3
+log
+@changed int nod to unsigned int nod like extern declaration in declarations.h
+@
+text
+@d10 2
+@
+
+
+1.2
+log
+@used int nod in init.c
+@
+text
+@d9 1
+a9 1
+int nod;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+@

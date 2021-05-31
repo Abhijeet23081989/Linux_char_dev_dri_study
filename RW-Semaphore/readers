@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /home/asrivastava/Abhijeet_App2/
+./myapp2 &
+./myapp2 &
+./myapp2 
+cd -

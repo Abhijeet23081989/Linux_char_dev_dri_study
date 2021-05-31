@@ -1,0 +1,310 @@
+head	1.15;
+access;
+symbols;
+locks
+	asrivastava:1.15; strict;
+comment	@ * @;
+
+
+1.15
+date	2018.08.18.07.11.10;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.08.18.06.43.41;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.08.18.06.43.01;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.08.18.06.39.42;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.08.18.06.31.27;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.08.18.06.27.33;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.08.18.06.05.22;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.08.18.04.11.24;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.18.03.43.07;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.18.03.38.47;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.18.03.30.47;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.03.22.52;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.03.19.25;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.03.17.12;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.17.18.27.25;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@Ist Iteration
+@
+
+
+1.15
+log
+@changed return 0 to return 1 in OUT definition
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+#include"file_opr.h"
+DEV *dev;
+int new_majorno;
+int majorno;
+static int __init initializationFunc(void)
+{
+	printk(KERN_INFO"Hello Kernel\n");
+///////////////////////////Register Device Driver with Kernel device/////////////////////////
+	majorno=MAJR;
+	new_majorno=register_chrdev(majorno,DEVNAME,&fops);
+	if(new_majorno==-1)
+	{
+		printk(KERN_ERR"register_chrdev failure\n");
+		goto OUT;
+	}
+/////////////////////////////Allocate space for device///////////////////////////////////////
+	dev=kmalloc(sizeof(DEV),GFP_KERNEL);
+	if(!dev)
+	{
+		printk(KERN_ERR"kmalloc failure\n");
+		goto OUT;
+	}
+	memset(dev,'\0',sizeof(DEV));
+	//Initialize device for device
+	//Add device entry into device table
+	return 0;
+OUT:printk(KERN_INFO"ERROR OUT\n");
+    return 1;
+}module_init(initializationFunc);
+@
+
+
+1.14
+log
+@typo resolved
+@
+text
+@d28 1
+a28 1
+return 0;
+d30 1
+a30 1
+    return 0;
+@
+
+
+1.13
+log
+@inserted return 0 before OUT
+@
+text
+@d29 1
+a29 1
+OUT:printk(KERN_INF"ERROR OUT\n");
+@
+
+
+1.12
+log
+@gave out definition
+@
+text
+@d28 2
+a29 1
+OUT:printk(KERN_INFO"ERROR OUT\n");
+@
+
+
+1.11
+log
+@defined OUT
+@
+text
+@d28 1
+a28 1
+OUT:printk(KERN_INFO"ERROR OUT");
+@
+
+
+1.10
+log
+@used KERN_ERR instead of KERN_INFO
+@
+text
+@d28 2
+a29 1
+	return 0;
+@
+
+
+1.9
+log
+@made changes in the driver_test file
+@
+text
+@d15 2
+a16 3
+		printk(KERN_INFO"register_chrdev failure\n");
+		//goto OUT;
+		return 0;
+d22 2
+a23 3
+		printk(KERN_INFO"kmalloc failure\n");
+		//goto OUT;
+		return 0;
+@
+
+
+1.8
+log
+@commented goto OUT
+@
+text
+@d27 1
+@
+
+
+1.7
+log
+@Restored out to OUT.
+added return 0 after OUT
+This is because if error is encountered "goto" would goto return 0 and would execute the statements from there onwards
+@
+text
+@d16 1
+a16 1
+		goto OUT;
+d24 1
+a24 1
+		goto OUT;
+@
+
+
+1.6
+log
+@changed OUT to out,Although not sure about it!!
+@
+text
+@d16 2
+a17 1
+		goto out;
+d24 2
+a25 1
+		goto out;
+@
+
+
+1.5
+log
+@changed MAJOR to MAJR
+@
+text
+@d16 1
+a16 1
+		goto OUT;
+d23 1
+a23 1
+		goto OUT;
+@
+
+
+1.4
+log
+@declared int majorno & int newmajorno globally
+hopefully this can resolve the mixed declarations warning
+@
+text
+@d11 1
+a11 1
+	majorno=MAJOR;
+@
+
+
+1.3
+log
+@corrected Typo error in error statement
+@
+text
+@d5 2
+d10 1
+a10 3
+	//Register Device Driver with Kernel device
+	int new_majorno;
+	int majorno;
+d18 1
+a18 1
+	//Allocate space for device
+@
+
+
+1.2
+log
+@removed mixed declarations
+corrected newmajorno to new_majorno(Typo error)
+@
+text
+@d13 1
+a13 1
+	if(new_majorno=-1)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 2
+a10 1
+	int new_majorno,majorno;
+d13 1
+a13 1
+	if(newmajorno=-1)
+@

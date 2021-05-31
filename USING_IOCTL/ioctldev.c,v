@@ -1,0 +1,367 @@
+head	1.15;
+access;
+symbols;
+locks
+	asrivastava:1.15; strict;
+comment	@ * @;
+
+
+1.15
+date	2018.10.01.06.29.21;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.10.01.05.38.20;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.10.01.05.25.16;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.28.04.43.13;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.27.12.47.56;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.27.10.48.17;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.27.09.52.45;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.09.27.08.14.42;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.09.27.07.54.03;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.09.27.07.49.52;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.09.27.07.31.35;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.27.05.30.24;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.27.03.39.25;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.25.12.54.38;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.25.12.41.31;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@routine for ioctl operations in driver
+@
+
+
+1.15
+log
+@added algo for SETQSETSIZE,GETQSETSIZE & SETDEVSIZE,GETDEVSIZE
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+#include"ioctl.h"
+long unlocked_ioctldev (struct file *myfile, unsigned int cmnd, unsigned long arg)
+{
+	DEV *ldev;
+	int qstsz;
+	printk(KERN_INFO"Begin:%s\n",__func__);
+	ldev=myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"No device info present!!\n");
+#endif
+		goto OUT;
+	}
+	qstsz=(ldev->regsize)*(ldev->noofreg);
+		printk(KERN_INFO"before access!!\n");
+	//if(access_ok(VERIFY_WRITE,ldev,sizeof(DEV))==-1)
+	//{
+		printk(KERN_INFO"after access!!\n");
+	switch(cmnd)
+	{
+		case RESETSYS://1
+			ldev->noofreg=NOOFREG;
+			ldev->regsize=REGSIZE;
+			ldev->devsize=DEVSIZE;
+			atomic_set(&ldev->datasize,datasize);
+			printk(KERN_INFO"Inside RESETSYS\n");
+			break;
+		case GETQUANSIZE://2
+			put_user(ldev->regsize,(int __user*)arg);
+			printk(KERN_INFO"Inside GETQUANSIZE\n");
+			break;
+		case SETQUANSIZE://3
+			get_user(ldev->regsize,(int __user*)arg);
+			printk(KERN_INFO"Inside SETQUANSIZE\n");
+			break;
+		case GETQSETSIZE://4
+			qstsz=(ldev->regsize)*(ldev->noofreg);
+			put_user(qstsz,(int __user*)arg);
+			printk(KERN_INFO"Inside GETQSETSIZE\n");
+			break;
+		case SETQSETSIZE://5
+			get_user(qstsz,(int __user*)arg);
+			ldev->noofreg=qstsz/(ldev->regsize);
+			printk(KERN_INFO"Inside SETQSETSIZE\n");
+			break;
+		case GETDEVSIZE://6
+			put_user(ldev->devsize,(int __user*)arg);
+			printk(KERN_INFO"Inside GETDEVSIZE\n");
+			break;
+		case SETDEVSIZE://7
+			get_user(ldev->devsize,(int __user*)arg);
+			printk(KERN_INFO"Inside SETDEVSIZE\n");
+			break;
+		case GETBAUDRATE://8
+			//put_user();
+			printk(KERN_INFO"Inside GETBAUDRATE\n");
+			break;
+		case SETBAUDRATE://9
+			//get_user();
+			printk(KERN_INFO"Inside SETBAUDRATE\n");
+			break;
+	}
+	//}
+	return arg;
+OUT:
+	return -1;
+	printk(KERN_INFO"End:%s\n",__func__);
+}
+@
+
+
+1.14
+log
+@removed &from arg
+added (int __user*)arg
+@
+text
+@a27 1
+			//ldev->datasize=datasize;
+a31 1
+			printk(KERN_INFO"ldev->regsize=%d\n",ldev->regsize);
+d36 1
+a36 1
+			get_user(ldev->regsize,(unsigned long __user*)&arg);
+d40 2
+a41 1
+			put_user(qstsz,(unsigned long __user*)&arg);
+d45 2
+a46 2
+			get_user(qstsz,(unsigned long __user*)&arg);
+			//ldev->regsize=qstsz/
+d50 1
+a50 1
+			//put_user();
+d54 1
+a54 1
+			//get_user();
+@
+
+
+1.13
+log
+@return arg
+@
+text
+@d34 1
+a34 1
+			put_user(ldev->regsize,(unsigned long __user*)&arg);
+@
+
+
+1.12
+log
+@added other commands
+@
+text
+@d68 1
+a68 1
+	return 0;
+@
+
+
+1.11
+log
+@added logic for all the remaining commands
+@
+text
+@d7 1
+a16 1
+	int qstsz;
+@
+
+
+1.10
+log
+@changed int to unsigned long
+@
+text
+@d16 2
+d42 1
+a42 1
+			//put_user();
+d46 2
+a47 1
+			//get_user();
+@
+
+
+1.9
+log
+@removed & from arg
+@
+text
+@d32 1
+a32 1
+			put_user(ldev->regsize,(int __user*)arg);
+d36 1
+a36 1
+			get_user(ldev->regsize,(int __user*)&arg);
+@
+
+
+1.8
+log
+@checknig
+@
+text
+@d32 1
+a32 1
+			put_user(ldev->regsize,(int __user*)&arg);
+@
+
+
+1.7
+log
+@checking
+@
+text
+@d31 1
+@
+
+
+1.6
+log
+@checking
+@
+text
+@d17 2
+a18 2
+	if(access_ok(VERIFY_WRITE,ldev,sizeof(DEV))==-1)
+	{
+d63 1
+a63 1
+	}
+@
+
+
+1.5
+log
+@if(access_ok()==-1)
+@
+text
+@d16 1
+d19 1
+@
+
+
+1.4
+log
+@added access_ok
+@
+text
+@d16 1
+a16 1
+	if(access_ok(VERIFY_WRITE,ldev,sizeof(DEV))==1)
+@
+
+
+1.3
+log
+@added put_user & get_user
+@
+text
+@d16 2
+d29 1
+a29 1
+			put_user(ldev->regsize,&arg);
+d33 1
+a33 1
+			get_user(ldev->regsize,&arg);
+d60 1
+@
+
+
+1.2
+log
+@removed ldev->first
+@
+text
+@d19 5
+d27 1
+d31 1
+d35 1
+d39 1
+d43 1
+d47 1
+d51 1
+d55 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a6 1
+	Qset *qset;
+a7 1
+	qset=(void*)0;
+a12 8
+#endif
+		goto OUT;
+	}
+	qset=ldev->first;
+	if(!ldev->first)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"No SCULL device present!!\n");
+@

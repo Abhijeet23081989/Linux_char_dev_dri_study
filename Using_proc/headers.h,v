@@ -1,0 +1,199 @@
+head	1.12;
+access;
+symbols;
+locks
+	asrivastava:1.12; strict;
+comment	@ * @;
+
+
+1.12
+date	2018.09.29.08.51.50;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.23.05.40.46;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.20.08.15.42;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.06.03.35.21;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.08.30.12.01.55;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.20.12.48.23;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.18.11.27.41;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.18.11.22.45;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.11.02.06;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.11.01.10;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.10.45.50;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.18.09.50.02;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@all header files included(Hopefully)
+@
+
+
+1.12
+log
+@added proc_fs.h
+@
+text
+@#include<linux/init.h>
+#include<linux/module.h>
+#include<linux/fs.h>
+#include<linux/slab.h>
+#include<linux/moduleparam.h>
+#include<linux/cdev.h>
+#include<linux/kernel.h>
+#include<linux/uaccess.h>
+#include<linux/semaphore.h>
+#include<linux/completion.h>
+#include<linux/proc_fs.h>
+
+MODULE_AUTHOR("ABHIJEET");
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("ABHIJEET_CHARACTER_DEVICE");
+@
+
+
+1.11
+log
+@added completion.h
+@
+text
+@d11 1
+@
+
+
+1.10
+log
+@added semaphore.h
+@
+text
+@d10 1
+@
+
+
+1.9
+log
+@added uaccess.h
+@
+text
+@d9 1
+@
+
+
+1.8
+log
+@added kernel.h
+@
+text
+@d8 1
+a8 1
+//#define module_param(name,type,perm)
+@
+
+
+1.7
+log
+@added struct cdev mycdev to DEV
+@
+text
+@d7 1
+@
+
+
+1.6
+log
+@removed #define
+@
+text
+@d6 1
+@
+
+
+1.5
+log
+@#define module_param
+@
+text
+@d6 1
+a6 1
+#define module_param(name,type,perm)
+@
+
+
+1.4
+log
+@removed #define
+@
+text
+@d6 1
+@
+
+
+1.3
+log
+@added #define module_param
+@
+text
+@a5 1
+#define module_param(name,type,perm)
+@
+
+
+1.2
+log
+@used module_param
+@
+text
+@d6 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 5
+@

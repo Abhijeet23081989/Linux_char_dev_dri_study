@@ -1,0 +1,64 @@
+head	1.1;
+access;
+symbols;
+locks
+	asrivastava:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2018.09.25.12.41.11;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@defined macros
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef MAGICNO
+#define MAGICNO 'K'
+#endif
+
+#ifndef RESETSYS
+#define RESETSYS _IO(MAGICNO,1)
+#endif
+
+#ifndef GETQUANSIZE
+#define GETQUANSIZE _IOR(MAGICNO,2,int)
+#endif
+
+#ifndef SETQUANSIZE
+#define SETQUANSIZE _IOW(MAGICNO,3,int)
+#endif
+
+#ifndef GETQSETSIZE
+#define GETQSETSIZE _IOR(MAGICNO,4,int)
+#endif
+
+#ifndef SETQSETSIZE
+#define SETQSETSIZE _IOW(MAGICNO,5,int)
+#endif
+
+#ifndef GETDEVSIZE
+#define GETDEVSIZE _IOR(MAGICNO,6,int)
+#endif
+
+#ifndef SETDEVSIZE
+#define SETDEVSIZE _IOW(MAGICNO,7,int)
+#endif
+
+#ifndef GETBAUDRATE
+#define GETBAUDRATE _IOR(MAGICNO,8,int)
+#endif
+
+#ifndef SETBAUDRATE
+#define SETBAUDRATE _IOW(MAGICNO,9,int)
+#endif
+@

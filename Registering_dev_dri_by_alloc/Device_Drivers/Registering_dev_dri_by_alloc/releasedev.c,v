@@ -1,0 +1,63 @@
+head	1.3;
+access;
+symbols;
+locks
+	asrivastava:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	2018.08.21.12.42.45;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.21.12.40.55;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.21.12.33.53;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@begin
+end
+@
+
+
+1.3
+log
+@removed file_opr.h
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+int releasedev(struct inode *appinode,struct file *apfile)
+{
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+	printk(KERN_INFO"END=>%s\n",__func__);
+	return 0;
+}
+@
+
+
+1.2
+log
+@added return 0;
+@
+text
+@a2 1
+#include"file_opr.h"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+@

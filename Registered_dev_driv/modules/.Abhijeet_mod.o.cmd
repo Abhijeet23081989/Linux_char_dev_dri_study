@@ -1,0 +1,1 @@
+cmd_/home/asrivastava/Device_Drivers/Registered_dev_driv/Abhijeet_mod.o := ld -m elf_x86_64   -r -o /home/asrivastava/Device_Drivers/Registered_dev_driv/Abhijeet_mod.o /home/asrivastava/Device_Drivers/Registered_dev_driv/init.o /home/asrivastava/Device_Drivers/Registered_dev_driv/cleanup.o 

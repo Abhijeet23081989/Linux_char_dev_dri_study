@@ -1,0 +1,333 @@
+head	1.16;
+access;
+symbols;
+locks
+	asrivastava:1.16; strict;
+comment	@ * @;
+
+
+1.16
+date	2018.09.14.10.33.11;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.09.03.06.31.03;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.03.06.28.30;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.09.03.06.23.24;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.03.06.21.26;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.02.14.39.04;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.08.30.12.15.27;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.08.30.12.06.10;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.08.30.12.03.26;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.30.12.02.33;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.30.12.00.01;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.25.10.09.48;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.25.08.48.28;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.21.12.42.26;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.21.12.40.46;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.21.12.33.43;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@begin
+end
+@
+
+
+1.16
+log
+@no changes
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+int opendev(struct inode *appnode,struct file *apfile)
+{
+	int ret;
+	DEV *ldev;
+#ifdef DEBUG
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+#endif
+	ldev = container_of(appnode->i_cdev,DEV,mycdev);
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"container_of:unable to cast address-type\n");
+#endif
+		goto OUT;
+	}
+	apfile->private_data=ldev;
+	if((apfile->f_flags & O_ACCMODE)== O_WRONLY)
+	{
+		ret=trimdev(ldev);
+	if(ret==-1)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Unable to trim\n");
+#endif
+		goto OUT;
+	}
+	}
+#ifdef DEBUG
+	printk(KERN_INFO"END=>%s\n",__func__);
+#endif
+	return 0;
+OUT:return -1;
+}
+@
+
+
+1.15
+log
+@put OUT after return 0 to check jump statements
+@
+text
+@d7 1
+a7 1
+//#ifdef DEBUG
+d9 1
+a9 1
+//#endif
+d30 1
+a30 1
+//#ifdef DEBUG
+d32 1
+a32 1
+//#endif
+@
+
+
+1.14
+log
+@commented OUT
+@
+text
+@d10 1
+a10 1
+	/*ldev = container_of(appnode->i_cdev,DEV,mycdev);
+d18 2
+a19 2
+	apfile->private_data=ldev;*/
+/*	if((apfile->f_flags & O_ACCMODE)== O_WRONLY)
+d29 1
+a29 1
+	}*/
+a32 2
+/*OUT:
+	return -1;*/
+d34 1
+@
+
+
+1.13
+log
+@commented entire routine
+@
+text
+@d33 2
+a34 2
+OUT:
+	return -1;
+@
+
+
+1.12
+log
+@commented O_ACCMODE
+@
+text
+@d10 1
+a10 1
+	ldev = container_of(appnode->i_cdev,DEV,mycdev);
+d18 1
+a18 1
+	apfile->private_data=ldev;
+@
+
+
+1.11
+log
+@removed one '&' ACCMODE
+@
+text
+@d19 1
+a19 1
+	if((apfile->f_flags & O_ACCMODE)== O_WRONLY)
+d29 1
+a29 1
+	}
+@
+
+
+1.10
+log
+@commented ifdef
+@
+text
+@d19 1
+a19 1
+	if((apfile->f_flags && O_ACCMODE)== O_WRONLY)
+@
+
+
+1.9
+log
+@typo
+used struct file instead of struct inode
+@
+text
+@d7 1
+a7 1
+#ifdef DEBUG
+d9 1
+a9 1
+#endif
+d30 1
+a30 1
+#ifdef DEBUG
+d32 1
+a32 1
+#endif
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d19 1
+a19 1
+	if((appnode->i_flags && O_ACCMODE)== O_WRONLY)
+@
+
+
+1.7
+log
+@typo
+@
+text
+@d19 1
+a19 1
+	if((apfile->i_flags && O_ACCMODE)== O_WRONLY)
+@
+
+
+1.6
+log
+@called trimdev
+@
+text
+@d5 1
+@
+
+
+1.5
+log
+@removed file_opr.h
+@
+text
+@d3 1
+a3 1
+int opendev(struct inode *appinode,struct file *apfile)
+d5 2
+d8 22
+d31 3
+@
+
+
+1.4
+log
+@typo
+@
+text
+@a2 1
+#include"file_opr.h"
+@
+
+
+1.3
+log
+@removed file_opr.h
+@
+text
+@d3 1
+@
+
+
+1.2
+log
+@added return 0;
+@
+text
+@a2 1
+#include"file_opr.h"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+@

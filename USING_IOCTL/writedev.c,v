@@ -1,0 +1,428 @@
+head	1.19;
+access;
+symbols;
+locks
+	asrivastava:1.19; strict;
+comment	@ * @;
+
+
+1.19
+date	2018.09.27.03.45.17;	author asrivastava;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2018.09.20.09.37.03;	author asrivastava;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2018.09.20.08.16.58;	author asrivastava;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2018.09.11.06.58.16;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.09.11.06.45.21;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.11.06.43.38;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.09.11.06.36.05;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.11.06.33.56;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.11.06.31.38;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.11.06.29.48;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.11.06.24.49;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.09.11.06.23.32;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.09.11.06.08.01;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.09.11.05.19.47;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.09.10.15.33.57;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.10.15.33.27;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.10.15.32.50;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.10.15.27.04;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.10.15.24.44;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@first iteration
+@
+
+
+1.19
+log
+@same as llseek
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+ssize_t writedev(struct file *myfile, const char __user *ubuff, size_t size, loff_t *offset)
+{
+	//_______________Declaration______________________________________________
+	DEV* ldev;
+	Qset* lqsetw;
+	int noctw,nocsw,lsize,i,ret;
+#ifdef DEBUG
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+#endif
+	//_____________Saving device name saved in myfile's private_data__________
+	ldev=(DEV*)myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: unable to return address\n");
+#endif
+		goto OUT;
+	}
+	//______________Checking user buffer size_________________________________
+	if(size < devsize)	
+	noctw=lsize=size;
+	else
+	noctw=lsize=devsize;
+	//_______________Semaphore Down Operation_________________________________
+	if(down_interruptible(&ldev->s1))
+		return -ERESTARTSYS;
+	//_________________Calling createSCULL____________________________________
+	lqsetw=ldev->first=createscull(noctw);
+	if(!ldev->first)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: return address\n");
+#endif
+		goto OUT;
+	}
+	i=nocsw=0;
+	//________________Writing from user buffer to kernel space SCULL___________
+	while(noctw)
+	{
+		if(noctw>regsize)
+			noctw=regsize;
+		ret=copy_from_user(lqsetw->data[i],ubuff+nocsw,regsize);
+		printk(KERN_INFO"ret=%d\n",ret);
+			if(ret)
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Partial write\n");
+#endif
+			}
+		nocsw=nocsw+(noctw-ret);
+		noctw=lsize-nocsw;
+			printk(KERN_INFO"noctw=%d\n",noctw);
+			printk(KERN_INFO"nocsw=%d\n",nocsw);
+			printk(KERN_INFO"data[%d]=%s\n",i,(char*)lqsetw->data[i]);
+		if(i==noofreg-1)
+		{
+			lqsetw=lqsetw->next;
+			i=0;
+		}
+		else
+			i++;
+	}
+	//ldev->datasize=nocsw;
+	atomic_set(&ldev->datasize,nocsw);
+	//_______________________Releasing Semaphore_______________________________
+	up(&ldev->s1);
+#ifdef DEBUG
+	printk(KERN_INFO"END=>%s\n",__func__);
+#endif
+	return nocsw;
+OUT: return -1;
+}
+@
+
+
+1.18
+log
+@typo
+@
+text
+@d65 2
+a66 1
+	ldev->datasize=nocsw;
+@
+
+
+1.17
+log
+@added semaphore down & up
+@
+text
+@d27 1
+a27 1
+	if(down_interruptable(&ldev->s1))
+@
+
+
+1.16
+log
+@if(i<noofreg)
+{
+i++;
+}
+else
+{
+lqsetw=lqsetw->next;
+}
+to
+if(i==noofreg-1)
+{
+lqsetw=lqsetw->next
+i=0;
+}
+else
+i++;
+@
+text
+@d26 3
+d66 2
+@
+
+
+1.15
+log
+@placed data[i] after nocsw & noctw display
+@
+text
+@d54 1
+a54 3
+		if(i<noofreg)
+			i++;
+		else
+d59 2
+@
+
+
+1.14
+log
+@places printk @@ end of while loop
+@
+text
+@d53 1
+a60 1
+			printk(KERN_INFO"data[%d]=%s\n",i,(char*)lqsetw->data[i]);
+@
+
+
+1.13
+log
+@(OLD FORMULA)==>nocsw=nocsw+(nocsw-ret)
+(NEW FORMULA)==>nocsw=nocsw+(noctw-ret)[Correct Formula]
+@
+text
+@a48 1
+			printk(KERN_INFO"data[%d]=%s\n",i,(char*)lqsetw->data[i]);
+d60 1
+@
+
+
+1.12
+log
+@changed ldev->devsize to devsize
+@
+text
+@d37 2
+a38 2
+	//while(noctw)
+	//{
+d50 1
+a50 1
+		nocsw=nocsw+(nocsw-ret);
+d61 1
+a61 1
+	//}
+@
+
+
+1.11
+log
+@typo
+@
+text
+@d22 1
+a22 1
+	if(size < ldev->devsize)	
+d25 1
+a25 1
+	noctw=lsize=ldev->devsize;
+@
+
+
+1.10
+log
+@checking for 1 quantum only
+@
+text
+@d61 1
+a61 1
+	}
+@
+
+
+1.9
+log
+@removed , after KERN_INFO
+@
+text
+@d37 2
+a38 2
+	while(noctw)
+	{
+d42 1
+d52 2
+@
+
+
+1.8
+log
+@use printk to see data value
+@
+text
+@d48 1
+a48 1
+			printk(KERN_INFO,"data[%d]=%s\n",i,(char*)lqsetw->data[i]);
+@
+
+
+1.7
+log
+@exchanged ldev->* to *
+@
+text
+@d48 1
+@
+
+
+1.6
+log
+@same as in createscull iteraation 1.72
+@
+text
+@d39 2
+a40 2
+		if(noctw>ldev->regsize)
+			noctw=ldev->regsize;
+d50 1
+a50 1
+		if(i<ldev->noofreg)
+@
+
+
+1.5
+log
+@missed ;
+@
+text
+@d50 1
+a50 1
+		if(i<ldev->regsize)
+@
+
+
+1.4
+log
+@typo
+@
+text
+@d63 1
+a63 1
+OUT: return -1
+@
+
+
+1.3
+log
+@added comments
+@
+text
+@d41 1
+a41 1
+		ret=copy_from_user(lqsetw->data[i],ubuff+nocsw,regsize)
+@
+
+
+1.2
+log
+@typo
+@
+text
+@d9 1
+d11 1
+d16 1
+d18 1
+d30 1
+d32 1
+d44 1
+a44 1
+#ifdef
+d59 1
+d61 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a8 1
+	int notcw,nocsw,lsize,i,ret;
+@

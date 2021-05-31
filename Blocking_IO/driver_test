@@ -1,0 +1,63 @@
+#! /bin/bash
+
+for filedev in $(ls *.h) $(ls *.c)
+do
+ ci $filedev
+done
+for filedev in $(ls *.h,v) $(ls *.c,v)
+do
+ co $filedev
+done
+insertdriver()
+{
+read -n1 -p "Do you want to insert driver?(y/n)"
+if [ $REPLY = 'y' ]
+then
+	echo
+	insmod ./modules/Abhijeet_mod.ko nod=10 noofreg=8 regsize=4 devsize=1024 datasize=0
+	read
+	cat /proc/modules
+	read
+	lsmod
+	read
+	cat /proc/devices
+	read -p "Enter Major Number:" majorno
+	mknod /home/asrivastava/Abhijeet_App2/MyNode c $majorno 0
+	cd /home/asrivastava/Abhijeet_App2
+	ls -l
+	./myapp2
+	unlink /home/asrivastava/Abhijeet_App/MyNode
+	cd -
+	read
+	dmesg
+fi
+}
+remdriver()
+{
+read -n1 -p "Do you want to remove driver?(y/n)"
+if [ $REPLY = 'y' ]
+then
+	rmmod Abhijeet_mod
+	read
+	lsmod
+	read
+	dmesg
+	read
+	cat /proc/devices
+	read
+	cat /proc/modules
+fi
+}
+if make
+then 
+   insertdriver
+   remdriver
+fi
+read -n1 -p "Do you want to edit driver?(y/n)"
+if [ $REPLY = 'y' ]
+then
+	for filedev in $(ls *.h,v) $(ls *.c,v)
+	do
+	co -l $filedev
+        done
+fi

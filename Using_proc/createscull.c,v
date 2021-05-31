@@ -1,0 +1,1709 @@
+head	1.72;
+access;
+symbols;
+locks
+	asrivastava:1.72; strict;
+comment	@ * @;
+
+
+1.72
+date	2018.09.11.05.17.42;	author asrivastava;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	2018.09.10.15.50.56;	author asrivastava;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	2018.09.07.14.53.05;	author asrivastava;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2018.09.07.14.43.21;	author asrivastava;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	2018.09.07.11.40.38;	author asrivastava;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	2018.09.07.09.52.47;	author asrivastava;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	2018.09.07.09.44.39;	author asrivastava;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	2018.09.07.08.17.14;	author asrivastava;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	2018.09.07.08.14.25;	author asrivastava;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2018.09.07.07.34.16;	author asrivastava;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2018.09.07.07.26.32;	author asrivastava;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2018.09.07.06.53.56;	author asrivastava;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2018.09.07.06.33.03;	author asrivastava;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2018.09.07.06.17.49;	author asrivastava;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2018.09.07.06.08.18;	author asrivastava;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2018.09.07.05.55.21;	author asrivastava;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2018.09.07.05.53.31;	author asrivastava;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2018.09.07.05.50.13;	author asrivastava;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2018.09.07.05.47.49;	author asrivastava;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2018.09.07.05.11.06;	author asrivastava;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2018.09.07.05.09.24;	author asrivastava;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2018.09.07.05.04.03;	author asrivastava;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2018.09.07.04.58.05;	author asrivastava;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2018.09.07.04.32.42;	author asrivastava;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2018.09.07.04.29.22;	author asrivastava;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2018.09.07.04.20.11;	author asrivastava;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2018.09.06.13.47.15;	author asrivastava;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2018.09.06.13.38.25;	author asrivastava;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2018.09.06.13.35.14;	author asrivastava;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2018.09.06.13.33.28;	author asrivastava;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2018.09.06.13.21.20;	author asrivastava;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2018.09.06.13.12.27;	author asrivastava;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2018.09.06.12.58.20;	author asrivastava;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2018.09.06.12.54.42;	author asrivastava;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2018.09.06.12.40.20;	author asrivastava;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2018.09.06.12.33.40;	author asrivastava;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2018.09.06.12.31.36;	author asrivastava;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2018.09.06.12.30.26;	author asrivastava;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2018.09.06.12.01.43;	author asrivastava;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2018.09.06.11.51.13;	author asrivastava;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2018.09.06.11.30.49;	author asrivastava;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2018.09.06.11.18.10;	author asrivastava;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2018.09.06.11.14.36;	author asrivastava;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2018.09.06.11.11.00;	author asrivastava;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2018.09.06.10.52.17;	author asrivastava;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2018.09.06.10.42.34;	author asrivastava;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2018.09.06.10.40.54;	author asrivastava;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2018.09.06.10.37.59;	author asrivastava;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2018.09.06.10.32.56;	author asrivastava;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2018.09.06.10.27.23;	author asrivastava;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2018.09.06.10.21.28;	author asrivastava;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2018.09.06.10.17.17;	author asrivastava;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2018.09.06.10.15.10;	author asrivastava;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2018.09.06.10.00.34;	author asrivastava;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2018.09.06.09.47.43;	author asrivastava;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2018.09.06.09.45.16;	author asrivastava;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2018.09.06.09.30.26;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.09.06.08.18.57;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.06.08.16.16;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.09.06.08.14.19;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.06.08.10.38;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.06.05.46.08;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.06.05.08.23;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.06.05.03.45;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.09.06.03.47.20;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.09.06.03.46.05;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.09.06.03.35.30;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.09.03.06.39.35;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.02.09.30.45;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.02.07.26.03;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.02.07.22.30;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.02.07.10.15;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First Iteration.
+@
+
+
+1.72
+log
+@changed ldev->regsize to ldev->noofreg
+because i goes upto noofreg-1
+hence in previous iteration of SCULL there was error of unknown object creation.
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+Qset* createscull(int len)
+{
+int noi;//no. of items
+int noq;//no. of quantums
+int i;//counter variable for noi
+int l;//Total no. of quantums
+int k;//No. of quantums per item
+Qset *first=(void*)0;//First Item
+Qset *lqset;
+#ifdef DEBUG
+	printk(KERN_INFO"Begin: %s\n",__func__);
+#endif
+	//____________________________________For calculating noi___________________________
+	noi=len/(noofreg*regsize);
+	//___________________________________For incrementing noi___________________________
+	if(len%(noofreg*regsize))
+		noi++;
+	printk(KERN_INFO"noi=%d\n",noi);
+	//____________________________________Allocating Memory_____________________________
+	for(i=0;i<noi;i++)
+	{
+		printk(KERN_INFO"i=%d\n",i);
+		/*For Head Item*/
+		if(i==0)
+		{
+			first=lqset=(Qset*)kmalloc(sizeof(Qset),GFP_KERNEL);
+			//printk(KERN_INFO"lqsetfirst=%p\n",lqset);
+			if(!lqset)
+			{
+#ifdef DEBUG
+				printk(KERN_ERR"Error:qset\n");
+#endif
+				goto OUT;
+			}
+			//printk(KERN_INFO"@@headnode\n");
+			memset(lqset,'\0',sizeof(Qset));
+			lqset->data=kmalloc(sizeof(void*)*noofreg,GFP_KERNEL);
+			if(!lqset->data)
+			{
+#ifdef DEBUG
+				printk(KERN_ERR"Error:qset->next\n");
+#endif
+				goto OUT;
+			}
+			memset(lqset->data,'\0',sizeof(void*)*noofreg);
+		}
+		/*For Items from Ist Item onwards uptill (noi-1)*/
+		else
+		{			
+			lqset->next=(Qset*)kmalloc(sizeof(Qset),GFP_KERNEL);
+			if(!lqset->next)
+			{
+#ifdef DEBUG
+				printk(KERN_ERR"Error:qset->next\n");
+#endif
+				goto OUT;
+			}
+			//printk(KERN_INFO"@@ %d node\n",i);
+			lqset=lqset->next;
+			//printk(KERN_INFO"lqset->next=%p\n",lqset->next);
+			/*Allocate Memory for  Number of registers(array of pointers for **data)*/
+			lqset->data=kmalloc(sizeof(void*)*noofreg,GFP_KERNEL);
+			if(!lqset->data)
+			{
+#ifdef DEBUG
+				printk(KERN_ERR"Error:qset->next\n");
+#endif
+				goto OUT;
+			}
+			memset(lqset->data,'\0',sizeof(void*)*noofreg);
+			//lqset->next=NULL;
+			//printk(KERN_INFO"lqsetlast=%p\n",lqset);
+		}
+	}
+	//printk(KERN_INFO"first->next=%p\n",first->next);
+	/*Bringing control back to item 1*/
+	lqset=first;
+	/////////////////////Quantum Creation/////////////////////////////
+	/*Calculating noq*/
+	noq=len/regsize;
+	if(len%regsize)
+		noq++;
+	/*printk(KERN_INFO"noq=%d\n",noq);
+	printk(KERN_INFO"len=%d\n",len);*/
+	for(l=0,k=0;l<=noq;l++)
+	{
+		if(k<noofreg)
+		{
+			lqset->data[k]=kmalloc(regsize,GFP_KERNEL);
+			if(!lqset->data[k])
+			{
+#ifdef DEBUG
+				printk(KERN_ERR"Error:qset->next\n");
+#endif
+				goto OUT;
+			}
+			memset(lqset->data[k],'\0',regsize);
+			k++;
+		}
+		else
+		{
+			lqset=lqset->next;
+			k=0;
+		}
+		//printk(KERN_INFO"l=%d\n",l);
+	}
+	#ifdef DEBUG
+	printk(KERN_INFO"End: %s\n",__func__);
+	#endif
+	return first;
+OUT:printk(KERN_ERR"Error:COREDUMP\n");
+    return (void*)0;
+}
+@
+
+
+1.71
+log
+@*** empty log message ***
+@
+text
+@d29 1
+a29 1
+			printk(KERN_INFO"lqsetfirst=%p\n",lqset);
+d72 1
+a72 1
+			memset(lqset->data,'\0',sizeof(char*)*noofreg);
+a98 1
+			printk(KERN_INFO"lqset->data[%d]=%p\n",k,(char*)lqset->data[k]);
+@
+
+
+1.70
+log
+@commented check statements
+@
+text
+@d11 1
+a11 3
+Qset *lqset=(void*)0;
+	/*first=lqset=(void*)0;
+	  lqset->next=(void*)0;*/
+d72 1
+a72 1
+			memset(lqset->data,'\0',sizeof(void*)*noofreg);
+d97 1
+a97 1
+				//goto OUT;
+d99 1
+a99 1
+			//printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d110 1
+a110 1
+	//#ifdef DEBUG
+d112 1
+a112 3
+	//#endif
+	//printk(KERN_INFO"lqsetbefretu=%p\n",lqset);
+	//return lqset;
+@
+
+
+1.69
+log
+@commented check statements
+@
+text
+@d118 2
+a119 2
+/*OUT:printk(KERN_ERR"Error:COREDUMP\n");
+    return (void*)0;*/
+@
+
+
+1.68
+log
+@*** empty log message ***
+@
+text
+@d37 1
+a37 1
+				//goto OUT;
+d39 1
+a39 1
+			printk(KERN_INFO"@@headnode\n");
+d47 1
+a47 1
+				//goto OUT;
+d60 1
+a60 1
+				//goto OUT;
+d62 1
+a62 2
+		
+			printk(KERN_INFO"@@ %d node\n",i);
+d64 1
+a64 1
+			printk(KERN_INFO"lqset->next=%p\n",lqset->next);
+d72 1
+a72 1
+				//goto OUT;
+d76 1
+a76 1
+			printk(KERN_INFO"lqsetlast=%p\n",lqset);
+d87 2
+a88 2
+	printk(KERN_INFO"noq=%d\n",noq);
+	printk(KERN_INFO"len=%d\n",len);
+d101 1
+a101 1
+			printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d110 1
+a110 1
+		printk(KERN_INFO"l=%d\n",l);
+d115 1
+a115 1
+//	printk(KERN_INFO"lqsetbefretu=%p\n",lqset);
+@
+
+
+1.67
+log
+@*** empty log message ***
+@
+text
+@d41 1
+a41 1
+			lqset->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d49 1
+a49 1
+			memset(lqset->data,'\0',sizeof(char*)*noofreg);
+d67 1
+a67 1
+			lqset->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d75 1
+a75 1
+			memset(lqset->data,'\0',sizeof(char*)*noofreg);
+d94 1
+a94 1
+			lqset->data[k]=(char*)kmalloc(regsize,GFP_KERNEL);
+@
+
+
+1.66
+log
+@return first
+@
+text
+@d88 2
+a89 2
+	//printk(KERN_INFO"noq=%d\n",noq);
+	//printk(KERN_INFO"len=%d\n",len);
+d98 1
+a98 1
+//				printk(KERN_ERR"Error:qset->next\n");
+d102 1
+a102 1
+//			printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d111 1
+a111 1
+//		printk(KERN_INFO"l=%d\n",l);
+a112 2
+	//first=lqset;
+	//first->next=lqset;
+d114 1
+a114 1
+//	printk(KERN_INFO"End: %s\n",__func__);
+@
+
+
+1.65
+log
+@*** empty log message ***
+@
+text
+@d119 2
+a120 2
+	return lqset;
+	//return first;
+@
+
+
+1.64
+log
+@kmalloc return type (char**)
+@
+text
+@d41 1
+a41 1
+			lqset->data=(char**)kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d67 1
+a67 1
+			lqset->data=(char**)kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d90 1
+a90 1
+	for(l=0,k=0;l<noq;l++)
+d113 1
+a113 1
+	first=lqset;
+d119 2
+a120 2
+	//return lqset;
+	return first;
+@
+
+
+1.63
+log
+@removed noi-1 condition
+@
+text
+@d41 1
+a41 1
+			lqset->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d64 1
+a64 1
+			//lqset=lqset->next;
+d67 1
+a67 1
+			lqset->next->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+a75 1
+			printk(KERN_INFO"@@ %d node3\n",i);
+a82 3
+	//printk(KERN_INFO"lqsetfir=%p\n",lqset);
+	//lqset=lqset->next;
+	//printk(KERN_INFO"lqset=%p\n",lqset);
+@
+
+
+1.62
+log
+@*** empty log message ***
+@
+text
+@a66 3
+			if(i==noi-1)
+			{
+			//lqset->next=(void*)0;
+a75 1
+			}
+@
+
+
+1.61
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a4 2
+Qset *first=(void*)0;//First Item
+Qset *lqset;
+d10 2
+a11 2
+Qset* createscull(int len)
+{
+d62 1
+a62 1
+			}
+d69 1
+a69 1
+			lqset->next=(void*)0;
+d106 1
+a106 1
+				printk(KERN_ERR"Error:qset->next\n");
+d110 1
+a110 1
+			printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d119 1
+a119 1
+		printk(KERN_INFO"l=%d\n",l);
+d124 1
+a124 1
+	printk(KERN_INFO"End: %s\n",__func__);
+d126 1
+a126 1
+	printk(KERN_INFO"lqsetbefretu=%p\n",lqset);
+@
+
+
+1.60
+log
+@*** empty log message ***
+@
+text
+@d121 1
+@
+
+
+1.59
+log
+@checking
+@
+text
+@d4 1
+a4 1
+Qset *lqset=(void*)0;
+@
+
+
+1.58
+log
+@checking runtime error
+@
+text
+@a53 4
+			if(i==noi-1)
+			lqset->next=(void*)0;
+			else
+			{
+d64 1
+a64 1
+			lqset=lqset->next;
+d67 4
+a70 1
+			lqset->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d79 1
+@
+
+
+1.57
+log
+@typo
+@
+text
+@d22 1
+a22 1
+	//printk(KERN_INFO"noi=%d\n",noi);
+d26 1
+a26 1
+		//printk(KERN_INFO"i=%d\n",i);
+d31 1
+a31 1
+			//printk(KERN_INFO"lqset=%p\n",lqset);
+d39 1
+a39 1
+		//	printk(KERN_INFO"@@headnode\n");
+d69 1
+a69 2
+		//	if(i==1)
+			//printk(KERN_INFO"lqset->next=%p\n",lqset->next);
+d82 1
+a82 1
+			printk(KERN_INFO"lqset=%p\n",lqset);
+@
+
+
+1.56
+log
+@checking
+@
+text
+@a55 1
+			printk(KERN_INFO"@@ %d node\n",i);
+d67 1
+@
+
+
+1.55
+log
+@changed NULL to (void*)0
+@
+text
+@d56 1
+a56 1
+			//printk(KERN_INFO"@@ %d node\n",i);
+d81 1
+a81 1
+			//printk(KERN_INFO"@@ %d node3\n",i);
+d83 1
+a83 1
+			//printk(KERN_INFO"lqset=%p\n",lqset);
+d111 1
+a111 1
+			//printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d120 1
+a120 1
+	//	printk(KERN_INFO"l=%d\n",l);
+@
+
+
+1.54
+log
+@calculation changes
+@
+text
+@d55 1
+a55 1
+			lqset->next=NULL;
+@
+
+
+1.53
+log
+@commented goto
+@
+text
+@d3 2
+a4 2
+Qset *first;//First Item
+Qset *lqset;
+d24 1
+a24 1
+	for(i=0;i<=noi;i++)
+d41 9
+d54 2
+d57 2
+d67 1
+d69 1
+a69 1
+			if(i==1)
+d72 1
+a72 1
+			lqset->data=(void**)kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d90 1
+a90 1
+	lqset=lqset->next;
+d99 1
+a99 1
+	for(l=0,k=0;l<=noq;l++)
+d101 1
+a101 1
+		if(k<=noofreg-1)
+d103 1
+a103 1
+			lqset->data[k]=(void*)kmalloc(regsize,GFP_KERNEL);
+@
+
+
+1.52
+log
+@commented OUT
+@
+text
+@d37 1
+a37 1
+				goto OUT;
+d52 1
+a52 1
+				goto OUT;
+d64 1
+a64 1
+				goto OUT;
+d95 1
+a95 1
+				goto OUT;
+@
+
+
+1.51
+log
+@commented all printk used for checking
+@
+text
+@d115 2
+a116 2
+OUT:printk(KERN_ERR"Error:COREDUMP\n");
+    return (void*)0;
+@
+
+
+1.50
+log
+@commented first->next=lqset
+@
+text
+@d26 1
+a26 1
+		printk(KERN_INFO"i=%d\n",i);
+d31 1
+a31 1
+			printk(KERN_INFO"lqset=%p\n",lqset);
+d56 1
+a56 1
+			printk(KERN_INFO"lqset->next=%p\n",lqset->next);
+d69 1
+a69 1
+			printk(KERN_INFO"lqset=%p\n",lqset);
+d72 1
+a72 1
+	printk(KERN_INFO"first->next=%p\n",first->next);
+d75 1
+a75 1
+	printk(KERN_INFO"lqsetfir=%p\n",lqset);
+d77 1
+a77 1
+	printk(KERN_INFO"lqset=%p\n",lqset);
+d83 2
+a84 2
+	printk(KERN_INFO"noq=%d\n",noq);
+	printk(KERN_INFO"len=%d\n",len);
+d97 1
+a97 1
+			printk(KERN_INFO"lqset->data[%d]=%p\n",k,lqset->data[k]);
+d106 1
+a106 1
+		printk(KERN_INFO"l=%d\n",l);
+@
+
+
+1.49
+log
+@first->next=lqset
+@
+text
+@d108 1
+a108 1
+	first->next=lqset;
+@
+
+
+1.48
+log
+@checking status of lqset before return
+@
+text
+@d108 1
+a108 1
+	//lqset=first;
+d113 2
+a114 1
+	return lqset;
+@
+
+
+1.47
+log
+@return lqset instead first
+@
+text
+@d108 1
+a108 1
+	lqset=first;
+d112 1
+d115 1
+a115 1
+    return NULL;
+@
+
+
+1.46
+log
+@l<=noq
+@
+text
+@d112 1
+a112 1
+	return first;
+@
+
+
+1.45
+log
+@*** empty log message ***
+@
+text
+@d85 1
+a85 1
+	for(l=0,k=0;l<noq;l++)
+d108 1
+a108 1
+	lqset->next=first;
+@
+
+
+1.44
+log
+@*** empty log message ***
+@
+text
+@d87 1
+a87 1
+		if(k<noofreg)
+d106 1
+a107 1
+		printk(KERN_INFO"l=%d\n",l);
+@
+
+
+1.43
+log
+@*** empty log message ***
+@
+text
+@d106 2
+a107 1
+		printk(KERN_INFO"noq=%d\n",noq);
+@
+
+
+1.42
+log
+@removed NULL
+@
+text
+@d106 1
+a106 1
+	}
+@
+
+
+1.41
+log
+@checking address
+@
+text
+@d68 1
+a68 1
+			lqset->next=NULL;
+@
+
+
+1.40
+log
+@checking address of quantum
+@
+text
+@d75 1
+@
+
+
+1.39
+log
+@checking address of lqset->next
+@
+text
+@d96 1
+a96 1
+			printk(K);
+@
+
+
+1.38
+log
+@added condition for creating extra quantum
+@
+text
+@d74 3
+a76 2
+	lqset=first->next;
+	lqset->next=lqset;
+d96 1
+a96 1
+
+@
+
+
+1.37
+log
+@checking value of noq and len
+@
+text
+@d79 2
+@
+
+
+1.36
+log
+@typo
+@
+text
+@d80 1
+@
+
+
+1.35
+log
+@checking first->next address
+@
+text
+@d79 1
+a79 1
+	printk
+@
+
+
+1.34
+log
+@typo
+@
+text
+@d39 1
+a39 1
+			printk(KERN_INFO"@@headnode\n");
+d45 1
+a45 1
+			printk(KERN_INFO"@@ %d node\n",i);
+d55 1
+d67 2
+a68 2
+			printk(KERN_INFO"@@ %d node3\n",i);
+			//lqset=lqset->next;
+d72 1
+d74 2
+a75 1
+	//lqset->next=first;
+d79 1
+@
+
+
+1.33
+log
+@added memset after lqset->data
+@
+text
+@d65 1
+a65 1
+			memset(lqset->next,'\0',sizeof(char*)*noofreg);
+@
+
+
+1.32
+log
+@when @@ else 
+added lqset=lqset->next 
+after lqset->next=kmalloc
+Because @@ lqset->next is still at head node
+so we need to move it to next node to allocate space for data
+we can also write
+lqset->next->data=kmalloc
+for pointing at data of next Item
+@
+text
+@d65 1
+@
+
+
+1.31
+log
+@typo(probably).
+@
+text
+@d54 1
+a55 1
+			memset(lqset->next,'\0',sizeof(Qset));
+d66 1
+a66 2
+			memset(lqset,'\0',sizeof(char*)*noofreg);
+			lqset=lqset->next;
+@
+
+
+1.30
+log
+@checking through printk
+@
+text
+@d31 1
+d68 1
+a68 1
+			printk(KERN_INFO"lqset= %p\n",lqset);
+@
+
+
+1.29
+log
+@commented lqset->data
+@
+text
+@d53 1
+a53 1
+			printk(KERN_INFO"@@ %d node2\n",i);
+d56 1
+a56 1
+			/*lqset->data=(void**)kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d63 2
+a64 2
+			}*/
+			printk(KERN_INFO"@@ %d node2\n",i);
+d67 1
+@
+
+
+1.28
+log
+@added printk after lqset->data
+@
+text
+@d56 1
+a56 1
+			lqset->data=(void**)kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d63 1
+a63 1
+			}
+@
+
+
+1.27
+log
+@commented lqset=lqset->next
+@
+text
+@d3 7
+a9 7
+	Qset *first;//First Item
+	Qset *lqset;
+	int noi;//no. of items
+	int noq;//no. of quantums
+	int i;//counter variable for noi
+	int l;//Total no. of quantums
+	int k;//No. of quantums per item
+d13 1
+a13 1
+	lqset->next=(void*)0;*/
+d27 1
+a27 1
+	/*For Head Item*/
+d30 3
+a32 3
+			first=lqset=kmalloc(sizeof(Qset),GFP_KERNEL);
+		if(!lqset)
+		{
+d34 1
+a34 1
+			printk(KERN_ERR"Error:qset\n");
+d36 4
+a39 1
+			goto OUT;
+d41 1
+a41 4
+		printk(KERN_INFO"@@headnode\n");
+		memset(lqset,'\0',sizeof(Qset));
+		}
+	/*For Items from Ist Item onwards uptill (noi-1)*/
+d45 1
+a45 1
+			lqset->next=kmalloc(sizeof(Qset),GFP_KERNEL);
+d55 1
+a55 1
+	/*Allocate Memory for  Number of registers(array of pointers for **data)*/
+d64 1
+d66 1
+a66 1
+			//lqset=lqset->next;
+d70 1
+a70 1
+	lqset->next=first;
+d97 1
+a97 1
+//#ifdef DEBUG
+d99 2
+a100 2
+//#endif
+return first;
+d102 1
+a102 1
+	return NULL;
+@
+
+
+1.26
+log
+@added noofreg to memset
+@
+text
+@d65 1
+a65 1
+			lqset=lqset->next;
+@
+
+
+1.25
+log
+@commented memset
+@
+text
+@d54 1
+a54 1
+			//memset(lqset->next,'\0',sizeof(Qset));
+d64 1
+a64 1
+			memset(lqset,'\0',sizeof(char*));
+@
+
+
+1.24
+log
+@include void** in place of char*
+@
+text
+@d54 1
+a54 1
+			memset(lqset->next,'\0',sizeof(Qset));
+d64 1
+a64 1
+			memset(lqset,'\0',sizeof(void**));
+@
+
+
+1.23
+log
+@included lqset=lqset->next inside else block
+@
+text
+@d64 1
+a64 1
+			memset(lqset,'\0',sizeof(char*));
+@
+
+
+1.22
+log
+@first->next=lqset in if(i==0)
+@
+text
+@d14 1
+a14 1
+//#ifdef DEBUG
+d16 1
+a16 1
+//#endif
+d22 1
+a22 1
+	printk(KERN_INFO"noi=%d\n",noi);
+a39 1
+		first->next=lqset;
+a44 1
+			lqset->next=lqset;
+d65 1
+a66 1
+			lqset=lqset->next;
+@
+
+
+1.21
+log
+@checking
+@
+text
+@d40 1
+@
+
+
+1.20
+log
+@added lqset->next=lqset in else
+@
+text
+@d54 1
+@
+
+
+1.19
+log
+@moved printk to first line after else
+@
+text
+@d45 1
+@
+
+
+1.18
+log
+@added i<=noi instead of i<noi.
+This is because zero item makes head node
+item 1 and item 2 make-up the SCULL
+@
+text
+@d43 2
+a44 1
+		{
+a63 1
+		printk(KERN_INFO"@@ %d node\n",i);
+@
+
+
+1.17
+log
+@added printk to check
+@
+text
+@d24 1
+a24 1
+	for(i=0;i<noi;i++)
+@
+
+
+1.16
+log
+@added (void**) to ldev->data=kmalloc
+@
+text
+@d38 1
+a38 1
+		//memset(first,'\0',sizeof(Qset));
+d63 1
+@
+
+
+1.15
+log
+@added printk i
+@
+text
+@d54 1
+a54 1
+			lqset->data=kmalloc(sizeof(char*)*noofreg,GFP_KERNEL);
+d75 1
+a75 1
+			lqset->data[k]=kmalloc(regsize,GFP_KERNEL);
+@
+
+
+1.14
+log
+@commented memset(first)
+@
+text
+@d26 1
+@
+
+
+1.13
+log
+@added message to check
+@
+text
+@d37 1
+a37 1
+		memset(first,'\0',sizeof(Qset));
+@
+
+
+1.12
+log
+@removed null pointers
+@
+text
+@d22 1
+@
+
+
+1.11
+log
+@removed extra lines
+@
+text
+@d12 2
+a13 2
+	first=lqset=(void*)0;
+	lqset->next=(void*)0;
+@
+
+
+1.10
+log
+@in place of NULL (void*)0
+@
+text
+@d3 1
+a3 1
+	Qset *first;
+a4 1
+	//Qset *first;//first item
+@
+
+
+1.9
+log
+@added memset
+@
+text
+@d13 2
+a14 1
+	first=lqset=NULL;
+@
+
+
+1.8
+log
+@typo
+@
+text
+@d36 2
+d50 1
+d60 1
+d74 9
+@
+
+
+1.7
+log
+@declarations of local variables done outside routine block
+@
+text
+@d7 1
+a7 1
+	int noq//no. of quantums
+@
+
+
+1.6
+log
+@Ist iteration
+@
+text
+@a2 2
+Qset* createscull(int len)
+{
+a4 1
+	first=lqset=NULL;
+d11 3
+@
+
+
+1.5
+log
+@put OUT after return qset
+@
+text
+@d5 3
+a7 1
+	Qset *qset;
+d10 1
+d12 2
+a13 1
+	int j;//counter variable for 
+d26 5
+a30 4
+	if(i==0)
+		qset=kmalloc(sizeof(Qset),GFP_KERNEL);
+	if(!qset)
+	{
+d32 1
+a32 1
+	printk(KERN_ERR"Error:qset\n");
+d34 3
+a36 2
+	goto OUT;
+	}
+d38 5
+a42 5
+	else
+	{
+	qset->next=kmalloc(sizeof(Qset),GFP_KERNEL);
+	if(!qset->next)
+	{
+d44 1
+a44 1
+	printk(KERN_ERR"Error:qset->next\n");
+d46 6
+a51 6
+	goto OUT;
+	}
+	/*Allocate Memory for  Number of registers*/
+	qset->data=kmalloc(sizeof(void*)*noofreg,GFP_KERNEL);
+	if(!qset->data)
+	{
+d53 1
+a53 1
+	printk(KERN_ERR"Error:qset->next\n");
+d55 4
+a58 5
+	goto OUT;
+	}
+	/*Allocating Memory for each register from 0th to (noofreg-1)th*/
+	for(j=0;j<noofreg;j++)
+	qset->data[j]=kmalloc(regsize,GFP_KERNEL);
+d60 17
+d78 1
+d82 1
+a82 1
+return qset;
+@
+
+
+1.4
+log
+@commented #ifdef to check if routine enters createscull
+@
+text
+@d59 1
+a61 1
+return qset;
+@
+
+
+1.3
+log
+@made OUT: return NULL
+@
+text
+@d10 1
+a10 1
+#ifdef DEBUG
+d12 1
+a12 1
+#endif
+d56 1
+a56 1
+#ifdef DEBUG
+d58 1
+a58 1
+#endif
+@
+
+
+1.2
+log
+@typo
+@
+text
+@d59 2
+a60 1
+OUT: return -1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d23 1
+a23 1
+		qset=kmalloc(sizeof(Qset),GPF_KERNEL);
+d34 1
+a34 1
+	qset->next=kmalloc(sizeof(Qset),GPF_KERNEL);
+d43 1
+a43 1
+	qset->data=kmalloc(sizeof(void*)*noofreg,GPF_KERNEL);
+d53 1
+a53 1
+	qset->data[j]=kmalloc(regsize,GPF_KERNEL);
+@

@@ -1,0 +1,47 @@
+head	1.2;
+access;
+symbols;
+locks
+	asrivastava:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	2018.08.17.12.29.58;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.17.07.45.23;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First version of cleanup
+@
+
+
+1.2
+log
+@changed the exit statement
+@
+text
+@#include"headers.h"
+void __exit cleanupFunc(void)
+{
+	printk(KERN_INFO"I fare the well breathen....for thou art have taken your first step towards kernel build\n");
+}
+module_exit(cleanupFunc);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 1
+a4 1
+	printk(KERN_INFO"JAI SHRI RAM!!!\n");
+@

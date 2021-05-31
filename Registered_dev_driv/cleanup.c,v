@@ -1,0 +1,117 @@
+head	1.6;
+access;
+symbols;
+locks
+	asrivastava:1.6; strict;
+comment	@ * @;
+
+
+1.6
+date	2018.08.18.07.00.34;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.18.06.39.19;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.18.05.44.27;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.18.05.37.20;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.05.28.02;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.17.18.27.08;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@Ist iteration
+@
+
+
+1.6
+log
+@changed majorno to new_majorno
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+void __exit cleanupFunc(void)
+{
+	printk(KERN_INFO"I fare the well breathen....for thou art have taken your first step towards kernel build\n");
+	////////////////////////////////Unregister device driver/////////////////////////////////
+	kfree(dev);
+	unregister_chrdev(new_majorno,DEVNAME);
+}
+module_exit(cleanupFunc);
+@
+
+
+1.5
+log
+@used kfree before unregister
+@
+text
+@d8 1
+a8 1
+	unregister_chrdev(majorno,DEVNAME);
+@
+
+
+1.4
+log
+@removed ret from cleanup
+@
+text
+@d7 1
+a8 1
+	kfree(dev);
+@
+
+
+1.3
+log
+@used kfree and unregister_chrdev
+@
+text
+@a2 1
+static int ret;
+d7 1
+a7 1
+	ret=unregister_chrdev(majorno,DEVNAME);
+@
+
+
+1.2
+log
+@changes incomplete
+@
+text
+@d3 1
+d8 1
+a8 1
+	unregister_chrdev();
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+d6 2
+@

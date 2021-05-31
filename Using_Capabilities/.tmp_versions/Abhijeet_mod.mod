@@ -1,0 +1,3 @@
+/home/asrivastava/Device_Drivers/Using_Capabilities/Abhijeet_mod.ko
+/home/asrivastava/Device_Drivers/Using_Capabilities/init.o /home/asrivastava/Device_Drivers/Using_Capabilities/opendev.o /home/asrivastava/Device_Drivers/Using_Capabilities/trimdev.o /home/asrivastava/Device_Drivers/Using_Capabilities/writedev.o /home/asrivastava/Device_Drivers/Using_Capabilities/createscull.o /home/asrivastava/Device_Drivers/Using_Capabilities/readdev.o /home/asrivastava/Device_Drivers/Using_Capabilities/llseekdev.o /home/asrivastava/Device_Drivers/Using_Capabilities/releasedev.o /home/asrivastava/Device_Drivers/Using_Capabilities/cleanup.o /home/asrivastava/Device_Drivers/Using_Capabilities/ioctldev.o
+

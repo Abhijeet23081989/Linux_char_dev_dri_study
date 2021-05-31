@@ -1,0 +1,29 @@
+head	1.1;
+access;
+symbols;
+locks
+	asrivastava:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2018.08.17.18.27.00;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@Ist Iteration
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include<linux/init.h>
+#include<linux/module.h>
+#include<linux/fs.h>
+#include<linux/slab.h>
+@

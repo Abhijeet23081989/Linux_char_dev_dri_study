@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols;
+locks
+	asrivastava:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2018.09.29.09.22.43;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@new header for proc fops
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@struct file_operations proc_fops=
+{
+};
+@

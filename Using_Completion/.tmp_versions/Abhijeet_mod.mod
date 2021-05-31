@@ -1,0 +1,3 @@
+/home/asrivastava/Device_Drivers/Using_Completion/Abhijeet_mod.ko
+/home/asrivastava/Device_Drivers/Using_Completion/init.o /home/asrivastava/Device_Drivers/Using_Completion/opendev.o /home/asrivastava/Device_Drivers/Using_Completion/trimdev.o /home/asrivastava/Device_Drivers/Using_Completion/writedev.o /home/asrivastava/Device_Drivers/Using_Completion/createscull.o /home/asrivastava/Device_Drivers/Using_Completion/readdev.o /home/asrivastava/Device_Drivers/Using_Completion/llseekdev.o /home/asrivastava/Device_Drivers/Using_Completion/releasedev.o /home/asrivastava/Device_Drivers/Using_Completion/cleanup.o
+

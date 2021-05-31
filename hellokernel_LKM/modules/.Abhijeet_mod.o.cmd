@@ -1,0 +1,1 @@
+cmd_/home/asrivastava/Device_Drivers/hellokernel_LKM/Abhijeet_mod.o := ld -m elf_x86_64   -r -o /home/asrivastava/Device_Drivers/hellokernel_LKM/Abhijeet_mod.o /home/asrivastava/Device_Drivers/hellokernel_LKM/hello_kernel.o /home/asrivastava/Device_Drivers/hellokernel_LKM/cleanup.o 

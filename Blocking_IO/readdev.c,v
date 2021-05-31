@@ -1,0 +1,595 @@
+head	1.27;
+access;
+symbols;
+locks
+	asrivastava:1.27; strict;
+comment	@ * @;
+
+
+1.27
+date	2018.09.22.05.23.14;	author asrivastava;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2018.09.21.11.23.54;	author asrivastava;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2018.09.21.10.47.28;	author asrivastava;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2018.09.21.10.44.03;	author asrivastava;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2018.09.21.10.32.48;	author asrivastava;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2018.09.21.10.13.06;	author asrivastava;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2018.09.20.09.36.40;	author asrivastava;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2018.09.20.08.16.33;	author asrivastava;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2018.09.17.12.29.39;	author asrivastava;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2018.09.17.12.25.52;	author asrivastava;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2018.09.17.12.22.04;	author asrivastava;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2018.09.17.12.16.24;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.09.17.12.15.30;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.17.12.13.55;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.09.17.12.12.57;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.09.17.12.12.11;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.09.17.05.38.16;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.09.16.05.11.58;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.09.11.12.02.09;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.09.11.11.58.59;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.09.11.11.52.16;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.09.10.15.41.43;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.09.10.15.38.17;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.09.10.15.37.29;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.09.10.15.36.09;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.09.10.15.32.34;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.10.15.24.33;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@first iteration
+@
+
+
+1.27
+log
+@commented Semaphore
+@
+text
+@#include"headers.h"
+#include"declarations.h"
+ssize_t readdev(struct file *myfile, char __user *ubuff, size_t size, loff_t *offset)
+{
+	//_______________Declaration______________________________________________
+	DEV* ldev;
+	Qset* lqsetr;
+	int noctr,nocsr,lsize,i,j,ret,qui,remq,wert;
+#ifdef DEBUG
+	printk(KERN_INFO"BEGIN==>%s\n",__func__);
+#endif
+	//_____________Saving device name saved in myfile's private_data__________
+	ldev=(DEV*)myfile->private_data;
+	if(!ldev)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: unable to return address\n");
+#endif
+		goto OUT;
+	}
+	//______________Checking user buffer size_________________________________
+	if(size > ldev->datasize)	
+		noctr=lsize=ldev->datasize;
+	else
+		noctr=lsize=size;
+/*	//_______________Semaphore Down Operation_________________________________
+        if(down_interruptible(&ldev->s1))
+                return -ERESTARTSYS;
+	printk(KERN_INFO"ldev->datasize=%d\n",ldev->datasize);*/
+
+	//_____________________Adding processes to wait queue_____________________
+	wert=wait_event_interruptible(ldev->wqu,ldev->datasize>0);
+	printk(KERN_INFO"wert=%d\n",wert);
+	if(wert)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: wait_event_interruptible has released all processes from its queue\n");
+#endif
+		return -ERESTARTSYS;
+	}
+	//___________Copying head node of SCULL to local Qset ptr_________________
+	lqsetr=ldev->first;
+	if(!ldev->first)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: return address\n");
+#endif
+		goto OUT;
+	}
+	j=i=nocsr=0;
+	qui=(*offset)/regsize;
+	remq=(*offset)%regsize;
+	lsize=noctr=noctr-(qui*regsize+remq);
+	//________________Reading from kernel space SCULL to user buffer___________
+	while(noctr)
+	{
+		if(noctr>regsize)
+			noctr=regsize;
+		printk(KERN_INFO"i=%d\n",i);
+		ret=copy_to_user(ubuff+nocsr,(lqsetr->data[i+qui]+remq),regsize-remq);
+			if(ret)
+			{
+#ifdef DEBUG
+				printk(KERN_INFO"Partial write\n");
+#endif
+			}
+		nocsr=nocsr+(noctr-(ret+remq));
+		noctr=lsize-nocsr;
+		if((i+qui)==noofreg-1)
+		{
+			lqsetr=lqsetr->next;
+			i=0;
+			qui=0;
+		}
+		else
+		{
+			remq=0;
+			i++;
+		}
+	}
+	//up(&ldev->s1);
+#ifdef DEBUG
+	printk(KERN_INFO"END=>%s\n",__func__);
+#endif	
+return nocsr;
+OUT: return -1;
+}
+@
+
+
+1.26
+log
+@printing value
+of wait_event_interruptible
+@
+text
+@d26 1
+a26 1
+	//_______________Semaphore Down Operation_________________________________
+d29 1
+a29 1
+	printk(KERN_INFO"ldev->datasize=%d\n",ldev->datasize);
+d81 1
+a81 1
+	up(&ldev->s1);
+@
+
+
+1.25
+log
+@removed & in wait_event_interruptible
+@
+text
+@d8 1
+a8 1
+	int noctr,nocsr,lsize,i,j,ret,qui,remq;
+d26 15
+a53 12
+	  //_______________Semaphore Down Operation_________________________________
+        if(down_interruptible(&ldev->s1))
+                return -ERESTARTSYS;
+
+	//_____________________Adding processes to wait queue_____________________
+	if(wait_event_interruptible(ldev->wqu,ldev->datasize>0)==-ERESTARTSYS)
+	{
+#ifdef DEBUG
+		printk(KERN_ERR"Error: wait_event_interruptible has released all processes from its queue\n");
+#endif
+		goto OUT;
+	}
+@
+
+
+1.24
+log
+@added semaphore
+@
+text
+@d44 1
+a44 1
+	if(wait_event_interruptible(&ldev->wqu,ldev->datasize>0)==-ERESTARTSYS)
+@
+
+
+1.23
+log
+@removed semaphore
+@
+text
+@d39 4
+d44 1
+a44 1
+	if(wait_event_interruptible(ldev->wqu,ldev->datasize>0)==-ERESTARTSYS)
+d78 1
+@
+
+
+1.22
+log
+@added wait_event_interruptible
+@
+text
+@a38 3
+	//___________________________Semaphore for read____________________________
+	if(down_interruptible(&ldev->s1))
+                  return -ERESTARTSYS;
+a73 1
+	 up(&ldev->s1);
+@
+
+
+1.21
+log
+@typo
+@
+text
+@d42 8
+@
+
+
+1.20
+log
+@added semaphore down & up
+@
+text
+@d40 1
+a40 1
+	if(down_interruptable(&ldev->s1))
+@
+
+
+1.19
+log
+@made qui=0 for next iitem
+@
+text
+@d39 3
+d69 1
+@
+
+
+1.18
+log
+@debugging
+@
+text
+@d58 1
+@
+
+
+1.17
+log
+@regsize-remq
+@
+text
+@d44 1
+@
+
+
+1.16
+log
+@removed [] and &
+@
+text
+@d38 1
+a38 1
+	noctr=noctr-(qui*regsize+remq);
+d44 1
+a44 1
+		ret=copy_to_user(ubuff+nocsr,(lqsetr->data[i+qui]+remq),regsize);
+d51 1
+a51 1
+		nocsr=nocsr+(noctr-ret);
+@
+
+
+1.15
+log
+@added &
+@
+text
+@d44 1
+a44 1
+		ret=copy_to_user(ubuff+nocsr,&lqsetr->data[i+qui][remq],regsize);
+@
+
+
+1.14
+log
+@declared j
+@
+text
+@d44 1
+a44 1
+		ret=copy_to_user(ubuff+nocsr,lqsetr->data[i+qui][remq],regsize);
+@
+
+
+1.13
+log
+@removed RET
+@
+text
+@d8 1
+a8 1
+	int noctr,nocsr,lsize,i,ret,qui,remq;
+@
+
+
+1.12
+log
+@used offset
+@
+text
+@d67 1
+a67 1
+RET:return nocsr;
+@
+
+
+1.11
+log
+@removed qiu
+@
+text
+@d8 1
+a8 1
+	int noctr,nocsr,lsize,i,ret;
+d35 4
+a38 1
+	i=nocsr=0;
+d44 1
+a44 1
+		ret=copy_to_user(ubuff+nocsr,lqsetr->data[i],regsize);
+a49 1
+				goto RET;
+d53 1
+a53 1
+		if(i==noofreg-1)
+d59 2
+d62 1
+@
+
+
+1.10
+log
+@,.
+@
+text
+@d8 1
+a8 1
+	int noctr,nocsr,lsize,i,ret,qiu;
+@
+
+
+1.9
+log
+@i==noofreg-1
+@
+text
+@d8 1
+a8 1
+	int noctr,nocsr,lsize,i,ret;
+@
+
+
+1.8
+log
+@i<noofreg
+@
+text
+@d51 1
+a51 3
+		if(i<noofreg)
+			i++;
+		else
+d56 2
+@
+
+
+1.7
+log
+@changed nocsr to noctr
+@
+text
+@d23 1
+a23 1
+	noctr=lsize=ldev->datasize;
+d25 1
+a25 1
+	noctr=lsize=size;
+d39 2
+a40 2
+		if(noctr>ldev->regsize)
+			noctr=ldev->regsize;
+d51 1
+a51 1
+		if(i<ldev->regsize)
+@
+
+
+1.6
+log
+@typo
+@
+text
+@d49 1
+a49 1
+		nocsr=nocsr+(nocsr-ret);
+@
+
+
+1.5
+log
+@removed const
+@
+text
+@d50 1
+a50 1
+		noctw=lsize-nocsr;
+@
+
+
+1.4
+log
+@typo
+@
+text
+@d3 1
+a3 1
+ssize_t readdev(struct file *myfile, const char __user *ubuff, size_t size, loff_t *offset)
+@
+
+
+1.3
+log
+@typo
+@
+text
+@d41 1
+a41 1
+		ret=copy_to_user(ubuff+nocsr,lqsetr->data[i],regsize)
+@
+
+
+1.2
+log
+@added comments
+@
+text
+@d8 1
+a8 1
+	int notcr,nocsr,lsize,i,ret;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+d11 1
+d16 1
+d18 1
+d30 1
+d32 1
+d36 1
+a36 1
+	//________________Writing from user buffer to kernel space SCULL___________
+d44 1
+a44 1
+#ifdef
+d59 1
+d61 1
+a61 1
+	
+d63 1
+a63 1
+OUT: return -1
+@

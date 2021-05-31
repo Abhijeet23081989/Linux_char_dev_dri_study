@@ -1,0 +1,406 @@
+head	1.20;
+access;
+symbols;
+locks
+	asrivastava:1.20; strict;
+comment	@ * @;
+
+
+1.20
+date	2018.09.10.12.40.52;	author asrivastava;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2018.09.06.03.43.16;	author asrivastava;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2018.09.06.03.42.35;	author asrivastava;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2018.09.06.03.41.05;	author asrivastava;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2018.09.06.03.35.02;	author asrivastava;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2018.09.02.07.20.26;	author asrivastava;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2018.09.02.07.09.50;	author asrivastava;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2018.08.30.11.59.51;	author asrivastava;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2018.08.30.06.20.03;	author asrivastava;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2018.08.25.10.27.53;	author asrivastava;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2018.08.25.08.48.02;	author asrivastava;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2018.08.21.12.39.07;	author asrivastava;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2018.08.21.11.39.05;	author asrivastava;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2018.08.21.11.38.11;	author asrivastava;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2018.08.21.11.24.34;	author asrivastava;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2018.08.20.14.49.04;	author asrivastava;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2018.08.20.12.51.31;	author asrivastava;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2018.08.20.12.47.48;	author asrivastava;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2018.08.18.11.38.14;	author asrivastava;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.08.18.09.48.49;	author asrivastava;	state Exp;
+branches;
+next	;
+
+
+desc
+@First iteration for alloc_chrdev_region
+@
+
+
+1.20
+log
+@First iteration
+@
+text
+@#ifndef DEBUG
+#define DEBUG 
+#endif
+
+#ifndef MAJR
+#define MAJR 0
+#endif
+
+#ifndef MINR
+#define MINR 0
+#endif
+
+#ifndef NOD
+#define NOD 1
+#endif
+
+#ifndef DEVNAME
+#define DEVNAME "Lagertha"
+#endif
+
+#ifndef NOOFREG
+#define NOOFREG 8
+#endif
+
+#ifndef REGSIZE
+#define REGSIZE 4
+#endif
+
+#ifndef DEVSIZE
+#define DEVSIZE 1024
+#endif
+
+#ifndef DATASIZE
+#define DATASIZE 0
+#endif
+
+//_____________for Items(Number of Applications)______________
+typedef struct Qset
+{
+	struct Qset *next;
+	//Qset *next;
+	void **data;
+}Qset;
+//_____________________For Device_____________________________
+typedef struct
+{
+	Qset *first;
+	struct cdev mycdev;
+	int noofreg;//no. of registers
+	int regsize;//register size 
+	int devsize;//Device size
+	int datasize;//Data size
+}DEV;
+extern DEV *dev;
+extern dev_t devno;
+extern int nod;
+//____________________For Book Keeping of driver_______________
+extern int noofreg,regsize,devsize,datasize;
+//____________________prototypes of kernel routies_____________
+int opendev(struct inode*, struct file*);
+int releasedev(struct inode*, struct file*);
+ssize_t readdev (struct file*, char __user *, size_t, loff_t*);
+ssize_t writedev(struct file *, const char __user *, size_t, loff_t *);
+loff_t llseekdev(struct file *, loff_t, int);
+int trimdev(DEV*);
+Qset* createscull(int);
+@
+
+
+1.19
+log
+@re-added struct Qset
+@
+text
+@d1 1
+a1 1
+#ifdef DEBUG
+@
+
+
+1.18
+log
+@added Qset after struct
+@
+text
+@d40 2
+a41 2
+	//struct Qset *next;
+	Qset *next;
+@
+
+
+1.17
+log
+@changed struct Qset to Qset as it was typedef
+@
+text
+@d38 1
+a38 1
+typedef struct
+@
+
+
+1.16
+log
+@added createscull
+@
+text
+@d40 2
+a41 1
+	struct Qset *next;
+@
+
+
+1.15
+log
+@removed struct from Qset
+@
+text
+@d2 1
+a2 1
+#define DEBUG 0
+@
+
+
+1.14
+log
+@added createscull
+@
+text
+@d46 1
+a46 1
+	struct Qset *first;
+@
+
+
+1.13
+log
+@added trimdev
+@
+text
+@d37 1
+a37 1
+//for Items(Number of Applications)
+d43 1
+a43 1
+//For Device
+d56 1
+a56 1
+//For Book Keeping of driver
+d58 1
+a58 1
+//____________prototypes of kernel routies_____________
+d65 1
+@
+
+
+1.12
+log
+@Added comments @@ routine calls
+@
+text
+@d64 1
+@
+
+
+1.11
+log
+@changed to appropriate return type.
+@
+text
+@d58 1
+@
+
+
+1.10
+log
+@typo
+@
+text
+@d60 3
+a62 3
+int readdev (struct file*, char __user *, size_t, loff_t*);
+int writedev(struct file *, const char __user *, size_t, loff_t *);
+int llseekdev(struct file *, loff_t, int);
+@
+
+
+1.9
+log
+@rentered opendev and releasedev
+@
+text
+@d60 3
+@
+
+
+1.8
+log
+@typo
+@
+text
+@d58 2
+@
+
+
+1.7
+log
+@typo
+@
+text
+@d44 1
+a44 1
+ struct
+@
+
+
+1.6
+log
+@added noofreg,regsize,devsize,datasize
+macros and externs.
+@
+text
+@d1 1
+a1 1
+#ifdef 
+@
+
+
+1.5
+log
+@changed devname to Lagertha
+@
+text
+@d1 4
+d20 18
+d43 2
+a44 1
+typedef struct
+d48 4
+d56 2
+@
+
+
+1.4
+log
+@typo
+@
+text
+@d14 1
+a14 1
+#define DEVNAME "Lagartha"
+@
+
+
+1.3
+log
+@added cdev.h for cdev_init , cdev_add & cdev_del
+@
+text
+@d24 1
+a24 1
+	struct cdev mydev;
+@
+
+
+1.2
+log
+@removed unsigned
+@
+text
+@d14 1
+a14 1
+#define DEVNAME "Abhijeet_dev_driver"
+d24 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d27 1
+a27 1
+extern unsigned int nod;
+@
